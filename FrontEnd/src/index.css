@@ -1,0 +1,405 @@
+
+
+:root {
+  --verde-claro: #68904D;
+  --verde-oscuro: #14471E;
+  --verde-oscuro-rgb: 20,71,30;
+  --naranja-claro: #EE9B01;
+  --naranja-oscuro: #DA6A00;
+  --gris-claro: #C8D2D1;
+  --gris-claro-rgb: 200,210,209;
+  /*--fuente-principal: system-ui, -apple-system, BlinkMacSystemFont;*/
+  --fuente-principal: "Roboto", sans-serif;;
+  --color-fuente: #000000;
+  --color-fuente-contraste1: #fff;
+  --tamano-fuente-header-buttons: 12px;
+  --padding-top-vs-header-desktop: 60px;
+  --padding-top-vs-header-mobile: 55px;
+  /*
+  --fondo: url('https://e1.pxfuel.com/desktop-wallpaper/75/10/desktop-wallpaper-road-bikes-racing-bicycle.jpg');
+  background-image: var(--fondo);
+  background-size: 100vw;
+  background-repeat: no-repeat;
+  
+  mask-image: linear-gradient(to bottom, white, rgba(255, 255, 255, 0.1) 30%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, white, rgba(255, 255, 255, 0) 40%, transparent)
+*/
+}
+
+/*https://www.ciclismoafondo.es/uploads/s1/32/75/31/7/entrenamiento-1.jpeg*/
+body {
+  font-family: var(--fuente-principal);
+  
+}
+
+/*Importante: Agregar esta clase a todos los objetos en medio del header y footer
+  para hacer que el footer se mantenga abajo*/
+.container-middle{
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 130px);
+  padding-top: var(--padding-top-vs-header-mobile);
+  background: rgba(var(--gris-claro-rgb), 0.3);
+}
+
+.border-radius {
+  border-radius: 5px;
+  border-width: 3px;
+  border-style: inset;
+  border-color: var(--naranja-claro);
+
+}
+/*
+.formulario-filtro {
+  background-color: var(--verde-oscuro);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.titulo-filtro {
+  margin: 1rem;
+  background-color: white;
+  font-size: 1rem;
+  width: 60%;
+}
+
+.formulario-filtro-verde {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+  padding: 1rem;
+}
+
+
+
+.filtro-izquierda {
+  width: 60%;
+}
+*/
+
+.button {
+
+  border: none;
+  border-radius: 35px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 4px;
+  color: black;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.button:hover {
+  background-color: #e3e2e2;
+  transform: scale(1.1);
+}
+
+
+
+.titulos {
+  margin: 2rem 1rem;
+  color: rgb(0, 0, 0);
+  font-size: 2em;
+  font-weight: normal;
+}
+
+
+/*HACIENDO RESPONSIVE */
+@media screen and (max-width: 768px) {
+
+  /*
+  .container-buscador {
+    margin-top: 25vw;
+  }
+  */
+
+  .div-card-producto {
+    flex-direction: column;
+    margin: 0;
+    border: none;
+  }
+
+  .card-producto-home {
+    margin: 1rem 0;
+    padding: 0;
+  }
+
+  .carrusel-container {
+
+    align-items: center;
+  }
+
+  .carrusel-image {
+    max-width: 95vw;
+    margin: 10px 0;
+  }
+
+  .carrusel-button {
+    font-size: 1rem;
+    padding: 8px 12px;
+    color: black;
+    background-color: transparent;
+  }
+
+  .carrusel-button:hover {
+    background-color: transparent;
+  }
+
+  .detalle-producto-card {
+    width: 90%;
+    height: auto;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+  .detalle-izquierda-card {
+    align-items: center;
+    text-align: center;
+  }
+
+  .imagen-Detalle-Producto {
+    width: 60%;
+  }
+
+  .button {
+    width: 80%;
+    margin-top: 1rem;
+  }
+
+  .search-container {
+    width: 100%;
+  }
+
+  .form-buscador {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .forms-busca-tu-bici {
+    width: 100vw;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .search-icon {
+    display: none;
+  }
+
+  .forms-busca-tu-bici::placeholder {
+    font-weight: 1;
+    font-size: 1.5rem;
+    color: #ffffff;
+  }
+
+
+  .div-card-producto {
+    flex-direction: column;
+  }
+
+  .div-card-producto a{
+    width: 100%;
+  }
+
+  .card-producto-home{
+    width: 100%;
+  }
+
+  .carrusel-image {
+
+    height: 40vw;
+  }
+
+  .detalle-producto-card {
+    width: 100%;
+    padding: 0;
+  }
+
+  .detalle-producto-overlay {
+    height: auto;
+    margin-top: 71px;
+  }
+
+  .detalle-descripcion-producto {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categorias-conteiner {
+    flex-direction: column;
+  }
+
+  .card-categoria {
+    width: 100%;
+    padding: 0;
+    border: rgb(209, 206, 206);
+    justify-content: space-around;
+    border-width: 2px;
+    border-style: solid;
+    margin: 1rem 0;
+    border-radius: 20px;
+  }
+
+  .card-categoria:hover {
+    transform: none;
+  }
+
+  .nombre-categoria {
+    margin-bottom: 1rem;
+  }
+
+  .titulo-slogan {
+    display: none;
+  }
+
+  .titulos {
+    margin: 2rem 0 0 0;
+  }
+
+}
+
+@media (min-width: 431px) {
+  .container-middle{
+    padding-top: var(--padding-top-vs-header-desktop);
+  }
+
+  .detalle-producto-overlay {
+    margin-top: 93px;
+  }
+}
+
+/*
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+*/
+
+.product-list th {
+  font-weight: bold;
+  background-color: #f0f0f0;
+}
+
+.product-list {
+  width: 100%;
+}
+
+.product-list h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.product-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-list th,
+.product-list td {
+  border: 1px solid #000;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.table {
+  width: 50%;
+  margin: 0%;
+
+}
+
+.delete-icon {
+  height: 20px;
+  width: 20px;
+}
+
+.ver-mas-fotos {
+  width: 60vw;
+}
+
+.ver-mas-fotos-container {
+  background-color: none;
+}
+
+.button-detalle {
+  text-decoration: none;
+}
+
+/*CARD LISTADO PRODUCTOS*/
+
+.productos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+
+.productos-list {
+  list-style-type: none;
+}
+
+
+.producto-item {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-around;
+  border-color: #14471E;
+  border-width: 3rem;
+  border: solid;
+  padding: 1rem;
+
+}
+
+
+.producto-nombre {
+  margin-bottom: 1px;
+  font-size: 1rem;
+}
+
+.imagen {
+  width: 150px;
+  height: 100px;
+  border-radius: 5px;
+}
+
+
+.imagen-titulo {
+  margin-top: 0;
+  font-size: 1rem;
+}

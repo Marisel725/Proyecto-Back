@@ -1,0 +1,91 @@
+
+.container-buscador {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 40vw;
+    /*
+    background-image: url('https://www.ciclismoafondo.es/uploads/s1/32/75/31/7/entrenamiento-1.jpeg');
+    */
+    background-size: 100vw;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 20px;
+    transition: background-image 0.5s ease-in-out;
+  }
+  
+  .container-buscador::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+  }
+  
+  .form-buscador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #fff;
+    position: relative;
+    /*height: 100vw;*/
+  }
+  
+  
+  .titulo-slogan {
+    font-family: var(--fuente-principal);
+    position: relative;
+    color: #fff;
+    width: 90%;
+    text-align: center;
+    font-size: 7vw;
+  
+  }
+  
+  .forms-busca-tu-bici {
+    font-family: var(--fuente-principal);
+    color: #fff;
+    width: 50vw;
+    padding: 10px;
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-color: #ffffff;
+    border-width: 3px;
+    border-style: solid;
+    border-radius: 20vw;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  .forms-busca-tu-bici:hover {
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    text-decoration: none;
+  
+  }
+  
+  .forms-busca-tu-bici::placeholder {
+    font-family: var(--fuente-principal);
+    font-weight: 300;
+    font-size: 2rem;
+    color: #ffffff;
+  }
+  
+  .search-icon {
+    font-size: 3rem;
+    margin-right: 10px;
+  }
+  
+  .search-container {
+    display: flex;
+    align-items: center;
+  }
+  

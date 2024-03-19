@@ -1,0 +1,12 @@
+.IniciarSesion-main{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 80vw;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.IniciarSesion-parent-center{
+    align-items: center;
+}

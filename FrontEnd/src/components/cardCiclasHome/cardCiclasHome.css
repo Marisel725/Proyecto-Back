@@ -1,0 +1,42 @@
+
+.div-card-producto {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 2rem;
+  
+  }
+  
+  .div-card-producto a{
+    text-decoration: none;
+    color: var(--color-fuente);
+    display: flex;
+    width: 40%;
+  }
+  
+  .card-producto-home {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    transition: background-color 0.5s ease-in-out,
+      transform 0.2s ease-in-out;
+  }
+  
+  .card-producto-home:hover {
+    cursor: pointer;
+    background-color: rgb(241, 240, 240);
+    transform: scale(1.1);
+  }
+  
+  .image-ciclas-home {
+    width: 35vw;
+    height: 35vw;
+    overflow: hidden;
+  }
+  
+  .home {
+    display: flex;
+  }

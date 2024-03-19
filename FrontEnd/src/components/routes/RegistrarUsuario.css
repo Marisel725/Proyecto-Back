@@ -1,0 +1,12 @@
+.RegistrarUsuario-main{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    width: 80vw;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.RegistrarUsuario-parent-center{
+    align-items: center;
+}

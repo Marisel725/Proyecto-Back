@@ -1,0 +1,57 @@
+.Input1-main{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    /*margin-top: 10px;*/
+    /*max-width: 700px;*/
+}
+.Input1-main label{
+    /*width: 30%;*/
+    /*padding: 10px;*/
+    background: none;
+    margin: 5px;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.Input1-field-ind-required{
+    color: red;
+}
+
+.Input1-main input{
+    /*width: 70%;*/
+    background: white;
+    padding: 8px;
+    margin: 5px;
+}
+
+.Input1-main-with-error input{
+    border: 2px solid #ffc7c2;
+}
+
+.Input1-error-text{
+    display: flex;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+
+.Input1-error-text span{
+    padding-left: 10px;
+    color: #dc3412;
+    font-style: italic;
+}
+
+.Input1-error-text img{
+    width: 15px;
+    height: 15px;
+    margin-left: 6px;
+}
+
+.Input1-field{
+    display: flex;
+    flex-direction: column;
+}
+
+/*border: 2px solid #ffc7c2*/
