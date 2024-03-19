@@ -9,7 +9,9 @@ import com.ebikerrent.alquilerbicicletas.exceptions.ResourceNotFoundException;
 import java.util.List;
 
 public interface IProductoService {
-List<ProductoSalidaDto> listarProductos();
+    ProductoSalidaDto buscarProductoPorNombre(ProductoEntradaDto productoEntradaDto) throws ResourceNotFoundException;
+
+    List<ProductoSalidaDto> listarProductos();
 ProductoSalidaDto registrarProducto(ProductoEntradaDto productoEntradaDto) throws ResourceNotFoundException;
 
 ProductoSalidaDto buscarProductoPorId(Long id) throws ResourceNotFoundException;

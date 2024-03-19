@@ -93,11 +93,30 @@ public class ReservaService implements IReservaService {
 
     @Override
     public ReservaSalidaDto buscarReservaPorId(Long id) throws ResourceNotFoundException {
-        return null;
+        Reserva reservaBuscada= reservaRepository.findById(id).orElse(null);
+
+        ReservaSalidaDto reservaEncontrada = null;
+        if (reservaEncontrada != null){
+            reservaEncontrada = entidadAdtoSalida(reservaBuscada);
+            LOGGER.info("Reserva encontrado : " + reservaBuscada);
+        }else {
+            LOGGER.error("El id de la reseva no se encuentra en la base de datos");
+            throw new ResourceNotFoundException("No se encontró la reserva en la base de datos");
+        }
+
+        return reservaEncontrada;
     }
 
     @Override
     public void eliminarReserva(Long id) throws ResourceNotFoundException {
+        Reserva reservaBuscada = reservaRepository.findById(id).orElse(null);
+
+        if (reservaBuscada !=null){
+            reservaRepository.deleteById(id);
+            LOGGER.warn("Se eliminó la reserva con id: " + reservaBuscada);
+        } else
+            throw new ResourceNotFoundException("No se encontró la reserva en la base de datos");
+        LOGGER.error("No se encontró la reserva en la base de datos");
 
     }
 

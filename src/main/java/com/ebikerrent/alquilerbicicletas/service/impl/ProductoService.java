@@ -151,7 +151,7 @@ public class ProductoService implements IProductoService {
         return productoSalidaDtoList;
     }
 
-   /*@Override
+   @Override
     public ProductoSalidaDto buscarProductoPorNombre(ProductoEntradaDto productoEntradaDto) throws ResourceNotFoundException {
         String nombreProducto = productoEntradaDto.getNombre();
         Producto productoPorNombre = productoRepository.findByNombre(nombreProducto);
@@ -167,7 +167,7 @@ public class ProductoService implements IProductoService {
 
         return productoEncontrado;
     }
-    */
+
 
 
 

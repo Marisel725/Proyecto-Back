@@ -54,5 +54,9 @@ public class ProductoController {
     public ResponseEntity<List<ProductoSalidaDto>> listarProductoPorCategoria(@PathVariable String titulo) throws ResourceNotFoundException {
         return new ResponseEntity<>(iProductoService.listarProductoPorCategoria(titulo), HttpStatus.OK);
     }
+    @GetMapping("/buscarProductoPorNombre/{nombre}")
+    public ResponseEntity<ProductoSalidaDto>buscarProductoPorNombre(@Valid @RequestBody ProductoEntradaDto productoEntradaDto) throws ResourceNotFoundException {
+        return new ResponseEntity<>(iProductoService.buscarProductoPorNombre(productoEntradaDto), HttpStatus.OK);
+    }
 
 }
