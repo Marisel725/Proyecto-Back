@@ -52,3 +52,9 @@
     font-weight: lighter;
   }
   
+  .card-link {
+    width: 30%;
+    display: inline-block; 
+    text-decoration: none; 
+    color: inherit;
+  }
