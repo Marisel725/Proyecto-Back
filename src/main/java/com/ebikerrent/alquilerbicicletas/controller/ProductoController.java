@@ -1,6 +1,7 @@
 package com.ebikerrent.alquilerbicicletas.controller;
 
 import com.ebikerrent.alquilerbicicletas.dto.entrada.modificacion.ProductoModificacionEntradaDto;
+import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoDisponibleEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.salida.producto.ProductoSalidaDto;
 import com.ebikerrent.alquilerbicicletas.exceptions.ResourceNotFoundException;
@@ -54,9 +55,14 @@ public class ProductoController {
     public ResponseEntity<List<ProductoSalidaDto>> listarProductoPorCategoria(@PathVariable String titulo) throws ResourceNotFoundException {
         return new ResponseEntity<>(iProductoService.listarProductoPorCategoria(titulo), HttpStatus.OK);
     }
-    @GetMapping("/buscarProductoPorNombre/{nombre}")
+    @GetMapping("/buscarProductoPorNombre")
     public ResponseEntity<ProductoSalidaDto>buscarProductoPorNombre(@Valid @RequestBody ProductoEntradaDto productoEntradaDto) throws ResourceNotFoundException {
         return new ResponseEntity<>(iProductoService.buscarProductoPorNombre(productoEntradaDto), HttpStatus.OK);
+    }
+
+    @GetMapping("/buscarProductoDisponible")
+    public ResponseEntity<ProductoSalidaDto>buscarProductoDisponible(@Valid @RequestBody ProductoDisponibleEntradaDto productoDisponibleEntradaDto) throws ResourceNotFoundException {
+        return new ResponseEntity<>(iProductoService.buscarProductoDisponible(productoDisponibleEntradaDto), HttpStatus.OK);
     }
 
 }

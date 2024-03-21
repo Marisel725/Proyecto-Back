@@ -1,6 +1,7 @@
 package com.ebikerrent.alquilerbicicletas.service.impl;
 
 import com.ebikerrent.alquilerbicicletas.dto.entrada.modificacion.ProductoModificacionEntradaDto;
+import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoDisponibleEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.salida.producto.ProductoSalidaDto;
 import com.ebikerrent.alquilerbicicletas.entity.Caracteristica;
@@ -16,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -151,7 +153,47 @@ public class ProductoService implements IProductoService {
         return productoSalidaDtoList;
     }
 
-   @Override
+    @Override
+    public ProductoSalidaDto buscarProductoDisponible(ProductoDisponibleEntradaDto productoDisponibleEntradaDto) throws ResourceNotFoundException {
+        Producto productoBuscado = productoRepository.findByNombre(productoDisponibleEntradaDto.getNombreProducto());
+        LocalDate fechaInicio = productoDisponibleEntradaDto.getFechaInicio();
+        LocalDate fechaFin = productoDisponibleEntradaDto.getFechaFin();
+
+        ProductoSalidaDto productoDisponibleSalidaDto= null;
+
+        List<LocalDate> fechaBuscada= new ArrayList<>();//inicio una lista para completar las fechas buscadas por el usuario
+
+        List<LocalDate>fechasReservadas= productoBuscado.getFechasReservadas();//traigo la lista de fechas reservadas del producto
+
+        if (productoBuscado != null){
+            if (fechaFin.compareTo(fechaInicio) >= 2) {
+                while (!fechaInicio.isAfter(fechaFin)) {
+                    fechaBuscada.add(fechaInicio);
+                    fechaInicio = fechaInicio.plusDays(1);
+                }
+                for (LocalDate fecha : fechaBuscada) {
+                    LOGGER.info("Fecha" + fecha);
+                    if (fechasReservadas.contains(fecha)) {
+                        LOGGER.error("la fecha" + fecha + "se encuentra reseravda");
+                        throw new ResourceNotFoundException("La fecha" + fecha + "ya se encuentra reservada");
+                    }
+                }
+                LOGGER.info("El producto se encuentra disponible para reservar en las fechas:" + fechaBuscada);
+                productoDisponibleSalidaDto = entidadAdtoSalida(productoBuscado);
+            } else {
+                LOGGER.error("La fecha de reserva debe ser mayor a 48hs");
+                throw  new ResourceNotFoundException("La fecha de reserva debe ser mayor a 48hs");
+            }
+        }
+        else {
+            LOGGER.error("El producto no existe en la BDD");
+            throw  new ResourceNotFoundException("El producto no existe en la BDD");
+        }
+                return productoDisponibleSalidaDto;
+            }
+
+
+    @Override
     public ProductoSalidaDto buscarProductoPorNombre(ProductoEntradaDto productoEntradaDto) throws ResourceNotFoundException {
         String nombreProducto = productoEntradaDto.getNombre();
         Producto productoPorNombre = productoRepository.findByNombre(nombreProducto);
@@ -168,9 +210,6 @@ public class ProductoService implements IProductoService {
         return productoEncontrado;
     }
 
-
-
-
     @Override
     public List<ProductoSalidaDto> listarProductos() {
         List<Producto> productos = productoRepository.findAll();
@@ -186,6 +225,8 @@ public class ProductoService implements IProductoService {
 
         return productoSalidaDtoList;
     }
+
+
 
     private void configuracionMapper(){
 

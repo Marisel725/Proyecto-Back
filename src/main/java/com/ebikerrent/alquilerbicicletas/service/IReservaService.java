@@ -12,6 +12,9 @@ import java.util.List;
 
 public interface IReservaService {
     List<ReservaSalidaDto> listarReservas();
+
+
+
     ReservaSalidaDto registrarReserva(ReservaEntradaDto reservaEntradaDto) throws ResourceNotFoundException;
 
     ReservaSalidaDto buscarReservaPorId(Long id) throws ResourceNotFoundException;

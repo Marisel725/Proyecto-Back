@@ -46,6 +46,8 @@ public class ReservaService implements IReservaService {
         return reservasSalidaDtoList;
     }
 
+
+
     @Override
     public ReservaSalidaDto registrarReserva(ReservaEntradaDto reservaEntradaDto) throws ResourceNotFoundException {
         Producto productoBuscado = productoRepository.findById(reservaEntradaDto.getProducto_id()).orElse(null);
