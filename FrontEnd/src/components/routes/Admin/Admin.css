@@ -1,0 +1,28 @@
+.Admin-parent-center{
+    align-items: center;
+}
+.Admin-container{
+    display: flex;
+    box-shadow: 0px 7px 4px 1px #00000040;
+    border-radius: 20px;
+    width: 93vw;
+
+}
+.Admin-group{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+@media screen and (max-width: 426px) {
+
+    .Admin-container{
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 7px 4px 1px #00000040;
+        border-radius: 20px;
+        width: 93vw;
+    
+    }
+}

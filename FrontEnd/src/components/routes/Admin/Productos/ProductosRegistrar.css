@@ -1,0 +1,61 @@
+.ProductoRegistrar-main{
+  margin-top: 2vw;
+}
+.product-form {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  
+    background-color: #ffffff;
+    color: #171717;
+    font-size: smaller;
+    border-radius:5px;
+    border: 1px solid;
+    
+  
+  }
+  
+  input,
+  textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    background-color: #ededed;
+    border-radius:5px;
+    border: 1px  solid #000000;
+  
+  
+  }
+  
+  .fileContainer .chooseFileButton {
+	background: #a9a7a7;
+}
+
+.fileContainer .chooseFileButton:hover{
+	background: #cfcfcf;
+}
+.fileContainer{
+
+    border: 1px solid #000000;
+}
+
+.saveButton{
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+
+}

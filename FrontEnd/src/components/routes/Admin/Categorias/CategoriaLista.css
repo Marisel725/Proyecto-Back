@@ -1,0 +1,26 @@
+@media screen and (max-width: 426px) {
+
+    p{
+        font-size: 13px;
+        text-align: center;
+    }
+
+
+    img.caracteristica-icon{
+
+        width: 70px;
+        height: 70px;
+    }
+
+    li.producto-item{
+
+        align-items: center;
+        text-align: center;     
+    }
+
+    .nombre-prod{
+
+        text-align: center;
+
+    }
+}

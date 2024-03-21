@@ -1,0 +1,30 @@
+a.ButtonLeftIcon-main{
+    text-decoration: none;
+}
+
+.ButtonLeftIcon-main {
+    font-family: var(--fuente-principal);
+    background-color: #ffffff;
+    border-radius: 15px;
+    border: none;
+    color: var(--color-fuente);
+    cursor: pointer;
+    font-size: var(--tamano-fuente-header-buttons);
+    padding: 7px 15px;
+    text-align: center;
+    margin: 5px 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ButtonLeftIcon-main:hover {
+    background-color: var(--naranja-claro);
+    color: var(--color-fuente-contraste1);
+}
+
+.ButtonLeftIcon-main img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}

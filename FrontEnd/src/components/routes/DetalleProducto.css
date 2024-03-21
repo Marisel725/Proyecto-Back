@@ -1,0 +1,301 @@
+
+.detalle-producto-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  opacity: 1;
+  transition: opacity 3s ease;
+  z-index: 3;
+
+}
+.background-overlay{
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  transition: opacity 3s ease;
+  z-index: 3;
+}
+
+
+.detalle-producto-card {
+  width: 95vw;
+  height: calc(40vw);
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: space-around;
+
+  /* display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+       */
+}
+
+.detalle-izquierda-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:space-around;
+  /* grid-area: 1 / 1 / 2 / 2; */
+  height: 100%;
+  width: 60%;
+}
+
+.button-detalle {
+  text-decoration: none;
+  width: 9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+a:-webkit-any-link {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.detalle-de-la-bici {
+  font-family: var(--fuente-principal);
+  font-size: 1rem;
+}
+
+.detalle-descripcion-producto {
+  font-family: var(--fuente-principal);
+  height: 100%;
+  width: 30%;
+}
+
+.imagen-Detalle-Producto {
+  width: 55%;
+  overflow: hidden;
+}
+
+.titulo-nombre-bici {
+color: #000000;
+border: none;
+
+font-size: 1rem;
+}
+
+p,h2{
+font-size: 1rem;
+
+}
+
+
+
+
+.caracteristicas-container {
+width: 30%; 
+text-align: center;
+padding: 10px; 
+box-sizing: border-box; 
+/* grid-area: 3 / 1 / 4 / 3;  */
+overflow: auto;
+}
+
+.caracteristica-item {
+text-align: center;
+margin-bottom: 10px;
+}
+
+.caracteristica-icon {
+width: 5px;
+height: 5px;
+margin-bottom: 1px; 
+}
+
+.tituloCaracteristicas{
+
+width: 100%;
+
+}
+
+
+.container-big-item{
+
+  display: flex;
+display: block;
+}
+
+.titulo-426{
+
+  display: none;
+}
+
+/* Media queries para hacerlo responsive 768*/
+@media screen and (max-width: 768px){
+
+article.detalle-producto-card {
+
+  padding: 1rem;
+  flex-direction: row;
+  align-items: start;
+}
+
+.caracteristicas-container {
+
+width: 25vw;  
+overflow: auto;
+box-sizing: border-box; 
+height: 60vh;
+}
+
+p{
+font-size: 10px;
+
+}
+
+
+.container-big-item{
+
+column-count: 2;
+}
+
+
+
+.button.button.button-detalle {
+
+width: 90px;
+height: 10px;
+font-size: 10px;
+
+}
+
+
+
+div.detalle-izquierda-card{
+box-sizing: border-box;
+width: 50%;
+
+}
+div.detalle-descripcion-producto{
+box-sizing: border-box;
+
+
+}
+
+.titulo-426{
+
+  display: none;
+}
+}
+
+
+/* Media queries para hacerlo responsive 426*/
+
+@media screen and (max-width: 426px) {
+article.detalle-producto-card {
+  flex-direction: column;
+  align-items: center;
+  width: 90vw; 
+  overflow:auto;
+
+}
+
+div.detalle-descripcion-producto{
+
+  height: 20vh;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  overflow:auto;
+}
+
+h2{
+  margin: 0%;
+  
+}
+
+.titulo-426{
+
+  display:block;
+}
+
+.oculto {
+  display: none;
+}
+
+div.tituloCaracteristicas{
+  display: none;
+
+}
+
+div.detalle-izquierda-card {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 35vh;
+  
+}
+div.caracteristicas-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  height: 25vh;
+  display: flex;
+
+}
+
+.detalle-izquierda-card {
+  height: auto;
+}
+
+
+
+.detalle-descripcion-producto {
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.caracteristicas-container {
+  overflow: auto;
+
+  max-height: 60vh; 
+}
+
+.button.button.button-detalle {
+  width: 100%;
+  height: 20px;
+  font-size: 10px;
+}
+
+
+
+.container-big-item {
+  display: flex;
+  flex-direction: column;
+}
+
+
+p{
+font-size: 10px;
+margin: 0%;
+
+}
+.detalle-producto-card{
+
+  height: 70vh;
+}
+
+span.titulo-nombre-bici{
+font-size: 10px;
+  
+}
+
+img.imagen-Detalle-Producto{
+
+  width: 100px;
+  height: 300px;
+
+}
+}

@@ -1,0 +1,12 @@
+
+R
+java:S2629'"7Use the built-in formatting to construct this argument.(Ã£Æíşÿÿÿÿ
+R
+java:S26290"7Use the built-in formatting to construct this argument.(è¹Úıúÿÿÿÿ
+k	java:S116"QRename this field "LOGGER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‡åñÌüÿÿÿÿ
+œ
+java:S1186;"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¹ÆÁûÿÿÿÿ
+\
+java:S3457'"AFormat specifiers should be used instead of string concatenation.(Ã£Æíşÿÿÿÿ
+\
+java:S34570"AFormat specifiers should be used instead of string concatenation.(è¹Úıúÿÿÿÿ

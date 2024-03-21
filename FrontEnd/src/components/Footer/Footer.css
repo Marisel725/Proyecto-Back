@@ -1,0 +1,195 @@
+
+footer {
+    background-color: var(--verde-claro);
+    color: #fff;
+    padding: 5px;
+
+  }
+  
+
+  .footer-content {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    justify-content: space-between;
+  }
+  
+  
+  .left{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+     margin-left: 20px;
+  
+    
+  }
+  
+  
+  .left img {
+    /*width: 5vw; */
+    margin-right: 2%;
+  }
+
+  .logo img{
+    width: 40px;
+    height: 40px;
+  }
+  
+  .right img {
+    width: 20px;   
+    margin: 0;
+    margin: 10%;
+  
+  
+   }
+  
+  .left p {
+    margin-left: 20%;
+    font-size: 0.8rem;
+    white-space: nowrap; 
+  
+  }
+  
+  .right {
+   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  
+  }
+  
+  
+  /*estilos footer entre 768 y 1023*/
+  @media (min-width: 768px) and (max-width: 1023px) {
+  
+    .left {
+  
+      margin-left: 10px;
+  
+    }
+  
+    .left p {
+      margin-left: 6%;
+      font-size: 0.8rem;
+      white-space: nowrap; 
+    
+    }
+    
+    .left img {
+      /*width:8vw; */
+      margin-right: 2%;
+     
+    }
+    
+    .right img {
+      width: 20px;   
+      margin: 0;
+      margin: 10%;
+       }  
+  }
+  
+  
+  
+  /* Estilos footer entre 377 y 676 */
+  @media (min-width: 377px) and (max-width: 767px) {
+  
+    .left {
+  
+      margin-left: 10px;
+  
+    }
+  
+    .left img {
+     /* width:10vw; */
+      margin-right: 2%;
+     
+    }
+    
+    .right img {
+      width: 20px;   
+      margin: 0;
+      margin: 10%;
+       }
+  
+      .left p {
+        margin-left: 6%;
+        font-size: 0.8rem;
+        white-space: nowrap; 
+      
+      }
+  
+  
+  }
+  
+  
+  /* Estilos footer entre 321 y 376 */
+  @media (min-width: 321px) and (max-width: 376px)  {
+  
+  
+    .left {
+  
+      margin-left: 10px;
+  
+    }
+  
+    .left p {
+      font-size: 0.8rem;
+      white-space: nowrap; 
+    
+    }
+    .left img {
+      /*width: 12vw; */
+      margin-right: 0;
+     
+    }
+    .right img {
+      width: 20px;   
+      margin: 0;
+      margin: 10%;
+       }
+  
+  
+  }
+  
+  
+  
+  /* Estilos footer  320 */
+  
+  @media (max-width: 320px) {
+  
+  
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .left img {
+      /*width: 13vw; */
+      margin-right: 2%;
+     
+    }
+    .right img {
+      width: 20px;
+      align-items: center;
+      padding-left: 10px;   
+      
+       }
+  
+    
+    .left p {
+      margin-left: 5%;
+      font-size: 0.8rem;
+      white-space: nowrap; 
+    
+    }
+  
+    .right{
+
+      justify-content: center;
+    }
+
+
+  }
+  
+  
