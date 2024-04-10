@@ -1,42 +1,42 @@
-
-.detalle-producto-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 70%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items:center;
-  opacity: 1;
-  transition: opacity 3s ease;
-  z-index: 3;
-
-}
-.background-overlay{
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 1;
-  transition: opacity 3s ease;
-  z-index: 3;
+.buscador-seccion-calendario button.react-calendar__tile:disabled:hover{
+  background: #f2dada;
+  color: #d95555;
 }
 
+.buscador-seccion-calendario button.react-calendar__tile:disabled:hover abbr{
+  display: none;
+}
+
+.buscador-seccion-calendario button.react-calendar__tile:disabled span{
+  display: none;
+}
+
+.buscador-seccion-calendario button.react-calendar__tile:disabled:hover span{
+  display: block;
+}
+
+.buscador-seccion-calendario button.react-calendar__tile--hover:disabled{
+  background: #f2dada;
+  color: #d95555;
+}
+
+.buscador-seccion-calendario button.react-calendar__tile--hover:disabled abbr{
+  display: none;
+}
+
+.buscador-seccion-calendario button.react-calendar__tile--hover:disabled span{
+  display: block;
+}
+
+
+.detalle-producto-overlay{
+  margin-bottom: 1rem;
+}
 
 .detalle-producto-card {
-  width: 95vw;
-  height: calc(40vw);
   background-color: white;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: space-around;
-
-  /* display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-       */
+  flex-direction: column;
 }
 
 .detalle-izquierda-card {
@@ -44,81 +44,191 @@
   flex-direction: column;
   align-items: center;
   justify-content:space-around;
-  /* grid-area: 1 / 1 / 2 / 2; */
   height: 100%;
-  width: 60%;
+  width: 100%;
+}
+
+.detalle-derecha-card{
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .button-detalle {
-  text-decoration: none;
-  width: 9rem;
+  font-size: 2.5rem !important;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  margin:0 1rem;
+  cursor: pointer;
+  border: none; 
+  background: none;  
+  color: white; 
+  transition: 
+  color 0.3s ease-in-out,
+  transform 0.3s ease-in-out; 
 }
 
-a:-webkit-any-link {
+.button-detalle:hover {
+  transform: scale(1.2);
+  color: #343434; 
+}
+
+a:-webkit-any-link{
+  display: flex;
+  align-items: center;
   cursor: pointer;
   text-decoration: none;
 }
 
-.detalle-de-la-bici {
+.titulo {
+  font-family: var(--fuente-principal); 
+  font-size: 2rem !important; 
+  font-weight: 400; 
+  color: #333; 
+  margin: 3rem 0rem 1rem; 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  line-height: 1.2; 
+  border-bottom: 1px solid #ccc; 
+  padding-bottom: 5px;
+}
+.detalle-producto-overlay p{
   font-family: var(--fuente-principal);
-  font-size: 1rem;
+  font-size: 1.5rem !important;
+  margin-right: 7px;
 }
 
 .detalle-descripcion-producto {
   font-family: var(--fuente-principal);
-  height: 100%;
-  width: 30%;
+}
+
+.fotos-detalle{
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .imagen-Detalle-Producto {
-  width: 55%;
-  overflow: hidden;
+  width: 60%;
+  max-height: 35vw; 
+  object-fit:contain; 
+}
+.imagen-Detalle-Producto:hover{
+  cursor: zoom-in;
 }
 
+.miniaturas {
+  width: 45%;
+  max-height: 35vw; 
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+  gap: 10px;
+}
+
+.miniatura {
+  width: 40%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out; }
+
+  .miniatura:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+
+.imagen-Detalle-Producto,
+.miniatura {
+  border-radius: 8px; 
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+
+.button-reserva{
+  font-family: var(--fuente-principal);
+  font-weight: 410;
+  font-size: 1.5rem !important;
+  background-color: #EE9B01;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  transition: 0.2s ease-in-out;
+}
+.button-reserva:hover {
+  background-color: var(--verde-claro); 
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+.barra-titulo{
+  display: flex;
+  background-color: #539c56;
+  width: 100vw;
+  max-width: calc(100vw - 16px);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.centradorTitulo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 .titulo-nombre-bici {
-color: #000000;
-border: none;
-
-font-size: 1rem;
+  font-family: var(--fuente-principal);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-p,h2{
-font-size: 1rem;
-
+.detalle-producto-overlay p{
+  font-size: 1rem;
 }
 
-
-
+.detalle-producto-overlay h2{
+  font-size: 1rem;
+}
 
 .caracteristicas-container {
-width: 30%; 
+width: 100%; 
+display: flex;
+flex-direction: column;
 text-align: center;
-padding: 10px; 
-box-sizing: border-box; 
-/* grid-area: 3 / 1 / 4 / 3;  */
 overflow: auto;
+}
+
+.iconos-caracteristicas{
+  display: flex;
+}
+
+.caracteristica-icon {
+  width: 2rem !important;
+  height: 2rem !important;
+  margin: 0 1rem 1rem !important;
+}
+.fa-hearth{
+  margin: 1.5px;
+  font-size: 3rem;
+ transition: transform 0.3s ease-in-out;
+ margin: 0 1rem; 
+}
+.fa-hearth:hover{
+  color: red !important;
 }
 
 .caracteristica-item {
 text-align: center;
-margin-bottom: 10px;
+margin: 0 1rem;
 }
-
-.caracteristica-icon {
-width: 5px;
-height: 5px;
-margin-bottom: 1px; 
-}
-
-.tituloCaracteristicas{
-
-width: 100%;
-
-}
-
 
 .container-big-item{
 
@@ -131,36 +241,43 @@ display: block;
   display: none;
 }
 
+.container-calendar-button{
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+
 /* Media queries para hacerlo responsive 768*/
 @media screen and (max-width: 768px){
 
 article.detalle-producto-card {
-
+  width: 95%;
   padding: 1rem;
-  flex-direction: row;
-  align-items: start;
+  flex-direction: column;
+  align-items: center;
 }
 
-.caracteristicas-container {
+.titulo{margin: 1rem;}
 
-width: 25vw;  
+.caracteristicas-container {
+width: 100vw;  
 overflow: auto;
 box-sizing: border-box; 
 height: 60vh;
 }
 
-p{
+.detalle-producto-overlay p{
 font-size: 10px;
+margin: 1rem;
+width: 95%;
 
 }
-
-
 .container-big-item{
-
 column-count: 2;
+display: flex;
 }
-
-
 
 .button.button.button-detalle {
 
@@ -169,8 +286,6 @@ height: 10px;
 font-size: 10px;
 
 }
-
-
 
 div.detalle-izquierda-card{
 box-sizing: border-box;
@@ -187,8 +302,50 @@ box-sizing: border-box;
 
   display: none;
 }
+
+div.detalle-producto-overlay{
+
+  margin-top: 0;
 }
 
+.imagen-Detalle-Producto {
+
+  width: 100%;
+}
+
+
+div.detalle-izquierda-card {
+  width: 100%;
+}
+
+
+
+
+div.caracteristicas-container {
+height: auto;
+}
+
+button.button-reserva {
+
+  font-size: 1rem !important;
+  margin-top: 10px;
+}
+
+.pButton-Reserva {
+
+font-size: 0.8rem !important;
+
+}
+
+
+
+div.container-calendar-button{
+
+  display: flex;
+  flex-direction: column;
+  
+  }
+}
 
 /* Media queries para hacerlo responsive 426*/
 
@@ -203,16 +360,15 @@ article.detalle-producto-card {
 
 div.detalle-descripcion-producto{
 
-  height: 20vh;
+  height: 50vh;
   width: 100%;
   text-align: center;
   box-sizing: border-box;
   overflow:auto;
 }
 
-h2{
+.detalle-producto-overlay h2{
   margin: 0%;
-  
 }
 
 .titulo-426{
@@ -224,15 +380,10 @@ h2{
   display: none;
 }
 
-div.tituloCaracteristicas{
-  display: none;
-
-}
 
 div.detalle-izquierda-card {
   width: 100%;
   box-sizing: border-box;
-  padding: 10px;
   height: 35vh;
   
 }
@@ -277,14 +428,10 @@ div.caracteristicas-container {
 }
 
 
-p{
+.detalle-producto-overlay p{
 font-size: 10px;
 margin: 0%;
 
-}
-.detalle-producto-card{
-
-  height: 70vh;
 }
 
 span.titulo-nombre-bici{
@@ -298,4 +445,73 @@ img.imagen-Detalle-Producto{
   height: 300px;
 
 }
+
+
+div.container-calendar-button{
+
+display: flex;
+flex-direction: column;
+
+}
+
+.iconos-caracteristicas {
+  display: flex;
+  flex-direction: column;
+}
+
+
+div.caracteristicas-container {
+height: auto;
+}
+
+button.button-reserva {
+
+  font-size: 1rem !important;
+  margin-top: 10px;
+}
+
+.pButton-Reserva {
+
+font-size: 0.8rem !important;
+
+}
+
+
+div.fotos-detalle {
+
+  display: flex;
+  flex-direction: column;
+}
+
+img.imagen-Detalle-Producto {
+
+  display: none;
+}
+
+
+div.miniaturas{
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  max-height: fit-content;
+  width: 100%;
+
+}
+
+div.detalle-izquierda-card {
+
+  height: auto;
+}
+
+div.detalle-producto-overlay{
+
+  margin-top: 0;
+}
+
+
+.miniatura {
+  width: 100%;
+}
+
 }

@@ -86,7 +86,7 @@ console.log(nombre,descripcion,categoria,id);
 
     try {
       const response = await axios.put(
-        `http://localhost:8080/productos/modificar`,
+        `https://backendebikerent-production.up.railway.app/productos/modificar`,
         productoActualizado
       );
   
@@ -106,7 +106,7 @@ console.log(nombre,descripcion,categoria,id);
     useEffect(() => {
       async function fetchCategorias() {
         try {
-          const response = await fetch('http://localhost:8080/categorias/listar');
+          const response = await fetch('https://backendebikerent-production.up.railway.app/categorias/listar');
           if (!response.ok) {
             throw new Error('Error al cargar las categorías');
           }
@@ -124,7 +124,7 @@ console.log(nombre,descripcion,categoria,id);
   useEffect(() => {
     async function fetchCaracteristicas() {
       try {
-        const response = await fetch('http://localhost:8080/caracteristicas/listar');
+        const response = await fetch('https://backendebikerent-production.up.railway.app/caracteristicas/listar');
         if (!response.ok) {
           throw new Error('Error al cargar las categorías');
         }

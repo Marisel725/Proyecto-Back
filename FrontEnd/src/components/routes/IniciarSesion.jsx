@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import './IniciarSesion.css';
 import Form1 from "../Form1/Form1";
-import {ContextGlobal, pathIcons, urlBackend} from '../../components/utils/global.context';
-import { useNavigate } from "react-router-dom";
+import {ContextGlobal, modulosRedireccion, pathIcons, urlBackend} from '../../components/utils/global.context';
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { getObjSession, setObjSession } from "../../components/utils/global.context";
 import axios from "axios";
 /*
 
 */
+const msgErr1 = 'Para realizar una reserva necesitas iniciar sesión, si no estás registrado, ve a la sección crear cuenta.';
+const msgErr2 = 'Para realizar operaciones sobre el panel de administración, necesitas iniciar sesión'
 /*Componente de ruta de inicio de sesión*/
 const IniciarSesion = () =>{
     /*Contexto global para actualzación y renders */
@@ -20,6 +22,13 @@ const IniciarSesion = () =>{
     const [errorConsumeService, setErrorConsumeService] = useState('');
     const [okConsumeService, setOkConsumeService] = useState('');
 
+    const [vieneDeModulo, setVieneDeModulo] = useState(false);
+    const [moduloOrigen, setModuloOrigen] = useState('');
+    const [paramsRedirect, setParamsRedirect] = useState(null);
+
+    const [urlParams, setUrlParams] = useSearchParams();
+
+
     /*Navigate para redireccionar a home en caso de login exitoso */
     const navigate = useNavigate();
 
@@ -28,6 +37,29 @@ const IniciarSesion = () =>{
         const objSessionTmp = getObjSession();
         if(!(objSessionTmp === null)){
             navigate('/');
+        }
+
+        const modulo = urlParams.get('modulo');
+        if(modulo === null){
+            setVieneDeModulo(false);
+            setModuloOrigen('');
+        }else{
+            setVieneDeModulo(true);
+            switch(modulo){
+                case modulosRedireccion.confirmarReservas:
+                    setModuloOrigen(modulosRedireccion.confirmarReservas);
+                    setParamsRedirect({
+                        id: urlParams.get('id'),
+                        fecha1: urlParams.get('fecha1'),
+                        fecha2: urlParams.get('fecha2')
+                    });
+                    setErrorConsumeService(msgErr1);
+                    break;
+                case modulosRedireccion.admin:
+                    setModuloOrigen(modulosRedireccion.admin);
+                    setErrorConsumeService(msgErr2);
+                    break;
+            }
         }
     }, []);
 
@@ -94,14 +126,36 @@ const IniciarSesion = () =>{
                 nombre: response.data.nombre,
                 apellido: response.data.apellido,
                 correo: response.data.mail,
+                telefono: response.data.telefono,
                 esAdmin: response.data.esAdmin
             });
             setContexto({...contexto, sesionActiva: true});
-            navigate('/');
+            redirigir();
         }catch(error){
             setErrorConsumeService(error.response.data);
         }
     } 
+
+    const redirigir = () =>{
+        if(vieneDeModulo){
+            switch(moduloOrigen){
+                case modulosRedireccion.confirmarReservas:
+                    const url = '/reservas/confirmar?id=' + paramsRedirect.id + 
+                                '&fecha1=' + paramsRedirect.fecha1 + 
+                                '&fecha2=' + paramsRedirect.fecha2;
+      
+                    navigate(url);
+                    break;
+                case modulosRedireccion.admin:
+                    navigate('/admin');
+                    break;
+                default:
+                    navigate('/');
+            }
+        }else{
+            navigate('/');
+        }
+    };
 
     const handleForm = (e) =>{
         setOkConsumeService('');

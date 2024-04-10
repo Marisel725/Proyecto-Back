@@ -64,6 +64,7 @@ const HamburgMenuUser = ({options, userData}) => {
                     <ButtonLeftIcon title={item.title} text={item.text} icon={item.icon} handleClick={() =>(defaultAcctionHandle(item.handle))}/>
                   </Link>
                   :
+                  
                   <ButtonLeftIcon title={item.title} text={item.text} icon={item.icon} handleClick={() =>(defaultAcctionHandle(item.handle))} />
                 }
               </li>

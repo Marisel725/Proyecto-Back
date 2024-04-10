@@ -29,8 +29,7 @@ const ProductosListar = () => {
       // este metodo lista los productos guardados cuando se hace click en listar
     const handleListClick = async () => {
         try {
-        const response = await axios.get('http://localhost:8080/productos/listar');
-        console.log('Productos obtenidos:', response.data);
+        const response = await axios.get('https://backendebikerent-production.up.railway.app/productos/listar');
         setProductos(response.data);
         } catch (error) {
         console.error('Error al obtener productos:', error);
@@ -41,8 +40,7 @@ const ProductosListar = () => {
     useEffect(() => {
         const fetchProductos = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/productos/listar');
-            console.log('Productos obtenidos:', response.data);
+            const response = await axios.get('https://backendebikerent-production.up.railway.app/productos/listar');
             setProductos(response.data);
         } catch (error) {
             console.error('Error al obtener productos:', error);
@@ -57,7 +55,7 @@ const ProductosListar = () => {
 
         const handleDeleteClick = async (productoId) => {
             try {
-                const response = await axios.delete(`http://localhost:8080/productos/eliminar/${productoId}`);
+                const response = await axios.delete(`https://backendebikerent-production.up.railway.app/productos/eliminar/${productoId}`);
                 
                 if (response.status === 204) {
 
@@ -93,7 +91,7 @@ const handleModifyClick = (productoId, updatedData) => {
 //este me trae los datos del producto por id, le puse categoria pero en realidad es de los productos
 const obtenerCategoria = async (categoriaId) => {
   try {
-    const response = await axios.get(`http://localhost:8080/categorias/buscarPorId/${categoriaId}`);
+    const response = await axios.get(`https://backendebikerent-production.up.railway.app/categorias/buscarPorId/${categoriaId}`);
     
     if (!response.status !== 200) {
       throw new Error(`Error al obtener la categoría: ${response.statusText}`);

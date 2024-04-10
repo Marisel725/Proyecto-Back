@@ -1,0 +1,45 @@
+.assign-admin{
+
+width: 3vw;
+height: 5vh;
+
+}
+
+.producto-itemUser{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 10px; 
+    border-color: #14471E;
+    border-width: 3rem;
+    border: solid;
+    padding: 1rem;
+    border-radius: 10px;
+    background-color:white;
+}
+
+
+.icon-aling{
+display: flex;
+align-items: center;
+
+}
+
+
+/* Estilos para el mensaje de no disponible en dispositivos más pequeños */
+@media (max-width: 768px) {
+    .not-available-message {
+      display: block; 
+      text-align: center; 
+      padding: 20px; 
+      background-color: #f8d7da; 
+      color: #721c24; 
+      border: 1px solid #f5c6cb; 
+      margin: 20px auto; 
+      max-width: 80%; 
+    }
+    
+    .producto-item {
+      display: none; 
+    }
+  }

@@ -1,5 +1,5 @@
 import { createContext, useMemo, useState } from "react";
-import pathLogoEmpresa from '../../images/Logo.png';
+import pathLogoEmpresa from '../../images/e_bikernt_logo.png';
 import pathIcoHamburgerUser from '../../images/hamburg-user-icon.svg';
 import pathIcoBtnAddUser from '../../images/ico-btn-add-user.png';
 import pathIcoBtnAdd from '../../images/ico-btn-add.png';
@@ -16,6 +16,12 @@ import pathIcoFacebook from '../../images/facebook.png';
 import pathIcoWhatsapp from '../../images/whatsapp.png';
 import pathIcoInstagram from '../../images/instagram.png';
 import pathIcoYoutube from '../../images/youtube.png';
+import pathIcoLupa from '../../images/ico-lupa.png';
+import pathIcoCalendario from '../../images/ico-calendario.png';
+import pathRol from '../../images/rol.png';
+import pathIcoDone from '../../images/ico-done.png';
+import pathIcoGotoBack from '../../images/ico-goto-back.png';
+import pathIcoRedAlert from '../../images/ico-red-alert.png';
 
 /*Manejo global de objeto de sesión */
 const nameObjSession = 'ebikerent-session';
@@ -72,7 +78,18 @@ export const pathIcons = {
   facebook: pathIcoFacebook,
   whatsapp: pathIcoWhatsapp,
   instagram: pathIcoInstagram,
-  youtube: pathIcoYoutube
+  youtube: pathIcoYoutube,
+  lupa: pathIcoLupa,
+  calendario: pathIcoCalendario,
+  rol: pathRol,
+  done: pathIcoDone,
+  gotoBack: pathIcoGotoBack,
+  redAlert: pathIcoRedAlert
 };
 
-export const urlBackend = 'http://localhost:8080/';
+export const urlBackend = 'https://backendebikerent-production.up.railway.app/';
+
+export const modulosRedireccion ={
+  confirmarReservas : 'confirmarReserva',
+  admin : 'admin'
+};

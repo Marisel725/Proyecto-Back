@@ -10,8 +10,7 @@ const CaracteristicaLista = () => {
   useEffect(() => {
     const fetchCaracteristicas = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/caracteristicas/listar');
-        console.log('Características obtenidas:', response.data);
+        const response = await axios.get('https://backendebikerent-production.up.railway.app/caracteristicas/listar');
         setCaracteristicas(response.data);
       } catch (error) {
         console.error('Error al obtener características:', error);
@@ -62,22 +61,28 @@ const CaracteristicaLista = () => {
           <li key={caracteristica.id} className="producto-item">
             <div> <p>{caracteristica.id}</p></div>
             <div><p> {caracteristica.nombre}</p></div>
-            <div><img src={caracteristica.icono} alt="Icono" className="caracteristica-icon" /></div>
-            <div>               
+            <div className='icon-aling'><img src={caracteristica.icono} alt="Icono" className="caracteristica-icon" /></div>
+            <div >   
+
+              {/*             
               <img
                 src={pathIcons.delete}
                 alt="Eliminar"
                 className="delete-icon"
                 onClick={() => handleDeleteClick(caracteristica.id)}
-        
-             
+      
              />
+
               <img
                 src={pathIcons.edit}
                 alt="Modificar"
                 className="delete-icon"
               />
+              */}
+              <h1>.</h1>
+
             </div>
+      
           </li>
         ))}
       </ul>

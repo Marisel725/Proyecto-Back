@@ -156,6 +156,7 @@ const RegistrarUsuario = () =>{
             nombre: formJson.nombre,
             apellido: formJson.apellido,
             mail: formJson.correo,
+            telefono: formJson.telefono,
             password: formJson.contrasena1,
             esAdmin: false
         };

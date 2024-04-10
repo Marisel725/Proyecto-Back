@@ -1,0 +1,46 @@
+.Input2-main{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.Input2-main label{
+    background: none;
+    margin: 5px;
+    border: none;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.Input2-main input{
+    background: white;
+    padding: 8px;
+    margin: 5px;
+}
+
+.Input2-main-with-error input{
+    border: 2px solid #ffc7c2;
+}
+
+.Input2-error-text{
+    display: flex;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+
+.Input2-error-text span{
+    padding-left: 10px;
+    color: #dc3412;
+    font-style: italic;
+}
+
+.Input2-error-text img{
+    width: 15px;
+    height: 15px;
+    margin-left: 6px;
+}
+
+.Input2-field{
+    display: flex;
+    flex-direction: column;
+}

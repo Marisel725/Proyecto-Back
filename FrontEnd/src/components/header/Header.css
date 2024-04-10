@@ -2,21 +2,21 @@
 ->Se realiza estrategia de estilizado -mobile first-
 */
 header {
-    height: 6vw;
-    background: #ffffff;
+    height: 60px;
+    background: rgba(var(--verde-oscuro-rgb), 0.98);
     box-shadow: 0px 4px 4px 0px #00000040;
     left: 0;
     top: 0;
     width: 100%;
+    max-width: calc(100vw - 16px);
     position: fixed;
     z-index: 3;
-    
 }
 
 header .header-logo-empresa{
-    width: 25vw;
+    width: 70px;
+    height: 50px;
     margin: 7px 0 0 20px;
-    
 }
 
 header .header-logo-usuario{
@@ -33,7 +33,6 @@ header .header-logo-usuario{
 
 .header-lema{
     display: none;
-    color: black;
 }
 
 .header-hamburg-user-section{
@@ -45,7 +44,7 @@ header .header-logo-usuario{
     */
 }
 
-@media (max-width: 431px){
+@media (min-width: 431px){
 
     header{
         height: 63px;

@@ -31,7 +31,7 @@ const FormCaracteristica = ({ onAgregarCaracteristica }) => {
   
     try {
       const response = await axios.post(
-        "http://localhost:8080/caracteristicas/registrar",
+        "https://backendebikerent-production.up.railway.app/caracteristicas/registrar",
         nuevaCaracteristica
       );
   

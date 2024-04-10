@@ -31,6 +31,12 @@ const Header = () => {
     navigate('/Admin');
   };
 
+  const handleFavoritos = () => {
+    navigate('/favoritos');
+  };
+
+
+
   let options = [];
   const optionsUserAnonimus = [
     { title: 'Crear cuenta', text: 'Crear cuenta', icon: pathIcons.addUser, link: '/signup', handle: null},
@@ -39,6 +45,7 @@ const Header = () => {
 
   const optionsUserLoged = [
     { title: 'Mi perfil', text: 'Mi perfil', icon: 'none', link: '', handle: null},
+    { title: 'Favoritos', text: 'Favoritos', icon: 'none', link:'', handle: handleFavoritos},
     { title: 'Cambiar contraseña', text: 'Cambiar contraseña', icon: 'none', link: '', handle: null},
     { title: 'Cerrar sesión', text: 'Cerrar sesión', icon: 'none', link: '', handle: handleCerarSesion}
   ];
@@ -96,13 +103,17 @@ const Header = () => {
     
   },[contexto.sesionActiva]);
 
+  const reiniciarHome = () => {
+    
+  }
+
   return (
     <header className='header-flex-container'>
       <div className='header-container-logo-empresa'>
-        <Link to={'/'}><img src='https://i.imgur.com/MN8hsjZ.png' alt='Home' className='header-logo-empresa' /></Link>
+        <Link to={'/'}><img src={urlLogoEmpresa} alt='Home' className='header-logo-empresa' /></Link>
 
         <div className='header-lema'>
-          <Link to={'/'}><div> Pedaleá tu destino</div></Link>
+          <Link to={'/'}><div>Ecológica o Eléctrica y <br/> muevete a tu ritmo</div></Link>
         </div>
       </div>
 

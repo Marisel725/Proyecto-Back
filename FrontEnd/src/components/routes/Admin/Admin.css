@@ -13,7 +13,24 @@
     flex-direction: column;
 }
 
+@media (max-width: 768px) {
+    .not-available-message {
+      display: block; 
+      text-align: center;
+      padding: 20px; 
+      background-color: #f8d7da; 
+      color: #721c24; 
+      border: 1px solid #f5c6cb; 
+      margin: 20px auto; 
+      max-width: 80%; 
+    }
+    
+    .Admin-container {
+      display: none; 
+    }
+  }
 
+/*   
 
 @media screen and (max-width: 426px) {
 
@@ -25,4 +42,4 @@
         width: 93vw;
     
     }
-}
+} */

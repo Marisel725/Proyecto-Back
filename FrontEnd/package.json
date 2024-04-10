@@ -13,14 +13,20 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@fortawesome/fontawesome-free": "^6.5.1",
+    "@fortawesome/fontawesome-svg-core": "^6.5.1",
+    "@fortawesome/free-brands-svg-icons": "^6.5.1",
+    "@fortawesome/free-regular-svg-icons": "^6.5.1",
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.15.11",
     "axios": "^1.6.7",
+    "boxicons": "^2.1.4",
     "react": "^18.2.0",
+    "react-calendar": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",
     "react-images-uploading": "^3.1.7",
     "react-router-dom": "^6.22.1"
-
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -32,7 +38,4 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "vite": "^4.5.2"
   }
-
-
-  
 }
