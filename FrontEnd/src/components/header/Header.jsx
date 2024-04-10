@@ -110,11 +110,7 @@ const Header = () => {
   return (
     <header className='header-flex-container'>
       <div className='header-container-logo-empresa'>
-        <Link to={'/'}><img src={urlLogoEmpresa} alt='Home' className='header-logo-empresa' /></Link>
-
-        <div className='header-lema'>
-          <Link to={'/'}><div>Ecológica o Eléctrica y <br/> muevete a tu ritmo</div></Link>
-        </div>
+        <Link to={'/'}><img src="https://i.imgur.com/MN8hsjZ.png" alt='Home' className='header-logo-empresa' /></Link>
       </div>
 
       <HamburgMenuUser options={optionsList} userData={objSession}/>
