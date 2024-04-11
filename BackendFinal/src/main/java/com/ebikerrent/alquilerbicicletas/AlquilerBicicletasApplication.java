@@ -44,8 +44,6 @@ public class AlquilerBicicletasApplication {
 		SpringApplication.run(AlquilerBicicletasApplication.class, args) ;
 		LOGGER.info("---eBikeRent EJECUTANDOSE---");
 		LOGGER.info("---eBikeRent EJECUTANDOSE---");
-		LOGGER.info("---eBikeRent EJECUTANDOSE---");
-		LOGGER.info("---eBikeRent EJECUTANDOSE---");
 	}
 	@Bean
 	public ModelMapper modelMapper(){

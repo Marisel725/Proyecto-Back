@@ -180,6 +180,26 @@ public class ProductoService implements IProductoService {
     }
 
     @Override
+    public List<ProductoSalidaDto> listarProductoPorCategoria(String titulo) throws ResourceNotFoundException {
+        List <Producto> productos = productoRepository.findAllByCategoriaTitulo(titulo);
+
+        if (productos.isEmpty()){
+            LOGGER.error("No existe categoria con ese titulo en la BDD");
+            throw new ResourceNotFoundException("No existe categoria con ese titulo en la BDD");
+        }
+
+        List<ProductoSalidaDto> productoSalidaDtoList= new ArrayList<>();
+
+        for (Producto p: productos){
+            ProductoSalidaDto productoSalidaDto = entidadAdtoSalida(p);
+            productoSalidaDtoList.add(productoSalidaDto);
+        }
+        LOGGER.info("Listado de todos los productos por Categoria : " + productos);
+
+        return productoSalidaDtoList;
+    }
+/*
+    @Override
     public List<ProductoSalidaDto> listarProductoPorCategoria(ProductoPorCategoria productoPorCategoria) throws ResourceNotFoundException {
         String categoria = productoPorCategoria.getNombreCategoria();
         Categoria categoriaBuscada = categoriaRepository.findByTitulo(categoria);
@@ -198,6 +218,8 @@ public class ProductoService implements IProductoService {
         }
         return productoSalidaDtoList;
     }
+
+ */
 
     @Override
     public ProductoSalidaDto buscarProductoPorNombre(ProductoEntradaDto productoEntradaDto) throws ResourceNotFoundException {

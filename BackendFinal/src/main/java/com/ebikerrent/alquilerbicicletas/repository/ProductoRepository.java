@@ -20,5 +20,5 @@ public interface ProductoRepository extends JpaRepository<Producto,Long> {
     @Query("SELECT p.id FROM Producto p")
     List<Long> findAllIds();
 
-    List<Producto> findAllByCategoria(Categoria categoria);
+    List<Producto> findAllByCategoriaTitulo(String titulo);
 }

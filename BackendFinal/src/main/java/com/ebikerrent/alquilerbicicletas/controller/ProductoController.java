@@ -139,8 +139,8 @@ public class ProductoController {
             @ApiResponse(responseCode = "500", description = "Server error",
                     content = @Content)
     })
-    @PostMapping("/listarProductosPorCategoria")
-    public ResponseEntity<List<ProductoSalidaDto>> listarProductoPorCategoria(@Valid @RequestBody ProductoPorCategoria productoPorCategoria) throws ResourceNotFoundException {
-        return new ResponseEntity<>(iProductoService.listarProductoPorCategoria(productoPorCategoria),HttpStatus.OK);
+    @GetMapping("/listarProductosPorCategoria/{titulo}")
+    public ResponseEntity<List<ProductoSalidaDto>> listarProductoPorCategoria(@PathVariable String titulo) throws ResourceNotFoundException {
+        return new ResponseEntity<>(iProductoService.listarProductoPorCategoria(titulo),HttpStatus.OK);
     }
 }
