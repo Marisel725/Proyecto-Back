@@ -236,8 +236,64 @@ public class ProductoService implements IProductoService {
         }
         return productoEncontrado;
     }
+    boolean verificacion (LocalDate fechaInicio, LocalDate fechaFin, Producto producto){
+        boolean valor = true;
+        for (LocalDate fecha= fechaInicio; !fecha.isAfter(fechaFin); fecha = fecha.plusDays(1)){
+            if (producto.getFechasReservadas().contains(fecha)){
+                valor= false;
+                break;
+            }
+        }
+        return valor;
+    }
+    @Override
+    public List<ProductoSalidaDto> buscarProductoDisponible(ProductoDisponibleEntradaDto productoDisponibleEntradaDto) throws ResourceNotFoundException {
+
+        List<Producto> productosPorCategoria = productoRepository.findAllByCategoriaTitulo(productoDisponibleEntradaDto.getNombreProductoOcategoria().toUpperCase());
+        List<Producto> productosPorNombre = productoRepository.findAllByNombreContaining(productoDisponibleEntradaDto.getNombreProductoOcategoria().toUpperCase());
+
+        if (productosPorCategoria.isEmpty() && productosPorNombre.isEmpty()){
+            LOGGER.info("El nombre no pertenece a un producto ni a una categoria");
+            throw new ResourceNotFoundException("El nombre no pertenece a un producto ni a una categoria");
+        }
+
+        LocalDate fechaInicio = productoDisponibleEntradaDto.getFechaInicio();
+        LocalDate fechaFin = productoDisponibleEntradaDto.getFechaFin();
+
+        List<ProductoSalidaDto> productoSalidaDtoList= new ArrayList<>();
+
+        if (ChronoUnit.DAYS.between(fechaInicio, fechaFin) <2){
+            LOGGER.error("la fecha de reserva debe ser mayor a 48 hs");
+            throw new ResourceNotFoundException("La fecha de reserva debe ser mayor a 48 hs");
+        }
+
+        if (!productosPorCategoria.isEmpty()){
+            for (Producto pc : productosPorCategoria){
+                if (verificacion(fechaInicio, fechaFin, pc)){
+                    ProductoSalidaDto productoSalidaDto = entidadAdtoSalida(pc);
+                    productoSalidaDtoList.add(productoSalidaDto);
+                }
+            }
+            LOGGER.info("Listado de todos los productos por categoria: " + productosPorCategoria);
+        }
+        if (!productosPorNombre.isEmpty()){
+            for (Producto pn : productosPorNombre){
+                if (verificacion(fechaInicio,fechaFin,pn)){
+                    ProductoSalidaDto productoSalidaDto = entidadAdtoSalida(pn);
+                    productoSalidaDtoList.add(productoSalidaDto);
+                }
+            }
+            LOGGER.info("Listado de todo los por productos por nombres: " + productosPorNombre);
+        }
+        if (productoSalidaDtoList.isEmpty()){
+            LOGGER.info("Las fechas solicitadas no están disponibles");
+            throw new ResourceNotFoundException("Las fechas solicitadas no están disponibles");
+        }
+        return productoSalidaDtoList;
+    }
 
 
+/*
     @Override
     public List<ProductoSalidaDto> buscarProductoDisponible(ProductoDisponibleEntradaDto productoDisponibleEntradaDto) throws ResourceNotFoundException {
         String nombreProducto = productoDisponibleEntradaDto.getNombreProducto();
@@ -276,6 +332,8 @@ public class ProductoService implements IProductoService {
         }
         return true;
     }
+
+ */
 
 
     private void configuracionMapper() {

@@ -20,9 +20,9 @@ public class ProductoDisponibleEntradaDto {
     //@NotNull(message = "El producto no puede ser nulo")
     //@Pattern(regexp = "^\\s*[A-Z0-9][A-Z0-9\\s]*$", message = "El campo debe contener solo letras mayúsculas y números.")
     //@Pattern(regexp = "^\\s*[A-Z]*\\s*$|^\\s+$", message = "El nombre del producto debe estar en mayúsculas")
-    @Pattern(regexp = "^[A-Z0-9\\s]*$", message = "El nombre del producto debe estar en mayúsculas y puede contener números")
+    //@Pattern(regexp = "^[A-Z0-9\\s]*$", message = "El nombre del producto debe estar en mayúsculas y puede contener números")
     @Size(max = 250)
-    private String nombreProducto;
+    private String nombreProductoOcategoria;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @FutureOrPresent(message = "La fecha no puede ser anterior al día de hoy")
     @NotNull(message = "Debe especificarse la fecha de reserva")
