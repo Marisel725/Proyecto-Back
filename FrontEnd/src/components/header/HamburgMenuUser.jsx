@@ -23,7 +23,7 @@ const HamburgMenuUser = ({options, userData}) => {
       {/*Si no hay objeto de sesión, muestra el icono anónimo, de lo contrario, arma le avatar*/}
       {userData === null ?
           <a className='HamburgMenuUser-anonimus-avatar' onClick={activateMenu}>
-            <img src="{pathIcons.hamburgUser}" alt='Opciones usuario' className={`HamburgMenuUser-icon ${isActiveMenu? 'HamburgMenuUser-isActive': ''}`} />
+            <img src={pathIcons.hamburgUser} alt='Opciones usuario' className={`HamburgMenuUser-icon ${isActiveMenu? 'HamburgMenuUser-isActive': ''}`} />
           </a>
         :
         <div className={'HamburgMenuUser-avatar ' + (isActiveMenu? 'HamburgMenuUser-isActive': '')} onClick={activateMenu}>

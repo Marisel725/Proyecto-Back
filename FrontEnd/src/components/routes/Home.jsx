@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Buscador from '../formBuscador/Buscador'
 import CardBicicleta from '../cardCiclasHome/CardBicicleta'
 import Categorias from '../categorias/Categorias'
+import CarrucelFotos from '../carrucelFotos/CarrucelFotos'
 
 const Home = () => {
 
@@ -26,7 +27,9 @@ const Home = () => {
       <div id="top" ></div>
       <Buscador />
       <Categorias />
-      <CardBicicleta onProductoSeleccionado={handleProductoSeleccionado} />
+      <CarrucelFotos onProductoSeleccionado={handleProductoSeleccionado}/>
+      
+      {/*<CardBicicleta onProductoSeleccionado={handleProductoSeleccionado} />*/}
 
       {/*mostrarDetalleProducto && (
         <DetalleProducto

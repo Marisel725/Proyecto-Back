@@ -32,7 +32,28 @@ header {
     */
 }
 
+.right-header{
+    display: flex;
+}
+.links-header{
+    display: flex;
+}
+
+.link-header{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 0 3rem;
+    color: #434141;
+    transition: transform 0.3s ease-in-out;
+}
+.link-header:hover{
+    transform: scale(1.2);
+}
+
 @media (min-width: 431px){
+
+  
 
     header{
         height: 80px;

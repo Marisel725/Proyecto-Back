@@ -21,7 +21,7 @@ const Header = () => {
   const handleCerarSesion = () => {
     deleteObjSession();
     setObjSession(null);
-    setContexto({...contexto, sesionActiva: false});
+    setContexto({ ...contexto, sesionActiva: false });
     options = optionsUserAnonimus.slice();
     setOptionList(options);
     navigate('/');
@@ -39,30 +39,30 @@ const Header = () => {
 
   let options = [];
   const optionsUserAnonimus = [
-    { title: 'Crear cuenta', text: 'Crear cuenta', icon: pathIcons.addUser, link: '/signup', handle: null},
-    { title: 'Iniciar sesión', text: 'Iniciar sesión', icon: pathIcons.goLogginUser, link: '/login', handle: null}
+    { title: 'Crear cuenta', text: 'Crear cuenta', icon: pathIcons.addUser, link: '/signup', handle: null },
+    { title: 'Iniciar sesión', text: 'Iniciar sesión', icon: pathIcons.goLogginUser, link: '/login', handle: null }
   ];
 
   const optionsUserLoged = [
-    { title: 'Mi perfil', text: 'Mi perfil', icon: 'none', link: '', handle: null},
-    { title: 'Favoritos', text: 'Favoritos', icon: 'none', link:'', handle: handleFavoritos},
-    { title: 'Cambiar contraseña', text: 'Cambiar contraseña', icon: 'none', link: '', handle: null},
-    { title: 'Cerrar sesión', text: 'Cerrar sesión', icon: 'none', link: '', handle: handleCerarSesion}
+    { title: 'Mi perfil', text: 'Mi perfil', icon: 'none', link: '', handle: null },
+    { title: 'Favoritos', text: 'Favoritos', icon: 'none', link: '', handle: handleFavoritos },
+    { title: 'Cambiar contraseña', text: 'Cambiar contraseña', icon: 'none', link: '', handle: null },
+    { title: 'Cerrar sesión', text: 'Cerrar sesión', icon: 'none', link: '', handle: handleCerarSesion }
   ];
 
-  const optionAdmin = {title: 'Módulo administrador', text: 'Módulo administrador', icon: 'none', link: '', handle: handleAdmin}
+  const optionAdmin = { title: 'Módulo administrador', text: 'Módulo administrador', icon: 'none', link: '', handle: handleAdmin }
 
   useEffect(() => {
     const objSessionTmp = getObjSession();
 
-    if(!(objSessionTmp === null)){
+    if (!(objSessionTmp === null)) {
       /*Arma listado de opciones de usuario */
       options = optionsUserLoged.slice();
-      if(objSessionTmp.esAdmin){
+      if (objSessionTmp.esAdmin) {
         options.unshift(optionAdmin);
       }
       setObjSession(objSessionTmp);
-    }else{
+    } else {
       options = optionsUserAnonimus.slice();
     }
 
@@ -85,26 +85,26 @@ const Header = () => {
     };
   }, []);
 
-  useEffect(() =>{
+  useEffect(() => {
     const objSessionTmp = getObjSession();
 
-    if(!(objSessionTmp === null)){
+    if (!(objSessionTmp === null)) {
       /*Arma listado de opciones de usuario */
       options = optionsUserLoged.slice();
-      if(objSessionTmp.esAdmin){
+      if (objSessionTmp.esAdmin) {
         options.unshift(optionAdmin);
       }
-    }else{
-        options = optionsUserAnonimus.slice();
+    } else {
+      options = optionsUserAnonimus.slice();
     }
 
     setOptionList(options);
     setObjSession(objSessionTmp);
-    
-  },[contexto.sesionActiva]);
+
+  }, [contexto.sesionActiva]);
 
   const reiniciarHome = () => {
-    
+
   }
 
   return (
@@ -112,8 +112,15 @@ const Header = () => {
       <div className='header-container-logo-empresa'>
         <Link to={'/'}><img src="https://i.imgur.com/MN8hsjZ.png" alt='Home' className='header-logo-empresa' /></Link>
       </div>
-
-      <HamburgMenuUser options={optionsList} userData={objSession}/>
+      <div className='right-header'>
+        <div className='links-header'>
+          <Link className='link-header'>Inicio</Link>
+          <Link className='link-header'>Sobre nosotros</Link>
+          <Link className='link-header'>Politica</Link>
+          <Link className='link-header'>Contacto</Link>
+        </div>
+        <HamburgMenuUser options={optionsList} userData={objSession} />
+      </div>
     </header>
   )
 }
