@@ -20,6 +20,9 @@ import { useLayoutEffect, useState } from 'react';
 import ConfirmarReserva from './components/routes/Reservas/ConfirmarReserva';
 import ListarReservas from './components/routes/Reservas/ListarReservas';
 import Favoritos from './components/header/Favoritos/Favoritos';
+import Categorias from './components/categorias/Categorias';
+import Whatsapp from './components/Buttons/Whatsapp';
+import SobreNosotros from './components/SobreNosotros/SobreNosotros';
 
 
 /*Se agrega este componente de envoltura de routes para hacer que en cada cambio de pagina
@@ -34,11 +37,12 @@ const WrapperRoutes = ({children}) =>{
 };
 
 function App() {
-
+// https://scontent.cdninstagram.com/v/t39.30808-6/436310922_18432217315029522_57186172660025872_n.jpg?stp=dst-jpg_e35&efg=eyJ2ZW5jb2RlX3RhZyI6ImltYWdlX3VybGdlbi4xNDQweDE4MDAuc2RyLmYzMDgwOCJ9&_nc_ht=scontent.cdninstagram.com&_nc_cat=1&_nc_ohc=cYeh7iwdBNoAb7Fbqk-&edm=APs17CUAAAAA&ccb=7-5&ig_cache_key=MzM0NTQ5ODc2OTA0MDY1MzU1MA%3D%3D.2-ccb7-5&oh=00_AfC2lot4_DtP-KgBok76K7Gcfs1MJRBJaGifOMWSItjyxw&oe=6621E292&_nc_sid=10d13b
 
   return (
     <>
       <Header />
+      <Whatsapp/>    
       <WrapperRoutes>
         <Routes>
           {/*Home del site */}
@@ -52,6 +56,10 @@ function App() {
         
           {/*Favoritos */}
           <Route path='/favoritos' element={<Favoritos />} />
+
+          {/*Sobre Nosotros */}
+          <Route path='/sobrenosotros' element={<SobreNosotros />} />
+
 
           {/*Sección admin*/}
           <Route path='/admin' element={<Admin />}>

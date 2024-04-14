@@ -1,0 +1,10 @@
+p{
+    font-size: 1.4rem;
+    margin: 0 2rem;
+    white-space: pre-line;
+}
+.imagen{
+    width: 90vw;
+    height: auto;
+    margin: 3rem;
+}

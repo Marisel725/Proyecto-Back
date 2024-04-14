@@ -93,7 +93,7 @@
   font-size: 1.4rem;
   color: #fff;
   position: relative;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
 .form-buscador img {
@@ -153,8 +153,11 @@
   position: relative;
   color: #fff;
   text-align: center;
-  font-size: 3vw;
+  width: 80vw;
+  height: 10vw;
+  font-size: 4vw;
   margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 /*

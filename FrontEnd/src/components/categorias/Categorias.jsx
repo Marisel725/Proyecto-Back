@@ -30,7 +30,7 @@ const Categorias = (props) => {
   }, [contexto.arrayCiclas]);
 
   return (
-    <div className='categorias-wrapper' style={{ display: ocultar ? 'none' : 'block' }} >
+    <div className='categorias-wrapper' style={{ display: ocultar ? 'none' : 'block' }} id="categorias" >
       <div style={{ width: '100%' }}>
         <h3 className='titulos'> Nuestras Categorías</h3>
       </div>
