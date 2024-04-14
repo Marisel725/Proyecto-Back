@@ -1,6 +1,7 @@
 footer {
   background-color:#ffffff;
   color: #000000;
+  
 }
 
 .footer-content {
@@ -17,11 +18,11 @@ footer {
 }
 
 .logo img {
+  margin: 0.2rem;
   height: 50px;
 }
 
 .right img {
-  background-color: #000000;
   width: 35px;
   margin: 0.5rem;
   transition: 0.2s ease-in-out;
