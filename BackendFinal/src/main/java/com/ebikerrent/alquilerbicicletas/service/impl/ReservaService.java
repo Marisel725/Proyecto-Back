@@ -2,7 +2,6 @@ package com.ebikerrent.alquilerbicicletas.service.impl;
 
 import com.ebikerrent.alquilerbicicletas.dto.entrada.modificacion.ReservaModificacionEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.entrada.reserva.ReservaEntradaDto;
-import com.ebikerrent.alquilerbicicletas.dto.salida.producto.ProductoSalidaDto;
 import com.ebikerrent.alquilerbicicletas.dto.salida.reserva.ReservaSalidaDto;
 import com.ebikerrent.alquilerbicicletas.entity.Producto;
 import com.ebikerrent.alquilerbicicletas.entity.Reserva;
@@ -21,9 +20,6 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import java.util.Set;
 
 @Service
 public class ReservaService implements IReservaService {
@@ -90,7 +86,7 @@ public class ReservaService implements IReservaService {
             ReservaSalidaDto reservaSalidaDto = entidadAdtoSalida(r);
             reservasSalidaDtoList.add(reservaSalidaDto);
         }
-        LOGGER.info("Listado de todas las reservas : " + reservas);
+        LOGGER.info("Listado de todas las reservas : " + '\n'+ reservas);
         return reservasSalidaDtoList;
     }
     public boolean buscarReservaPorProducto(ReservaEntradaDto reservaEntradaDto) throws ResourceNotFoundException {
@@ -123,6 +119,25 @@ public class ReservaService implements IReservaService {
 
         LOGGER.info("El producto se encuentra disponible para las fechas buscadas: de " + fechaInicio + " a " + fechaFin + " " + productoBuscado.getNombre());
         return true;
+    }
+
+    @Override
+    public List<ReservaSalidaDto> listarReservasDeUsuario(String mail) throws ResourceNotFoundException {
+        Usuario usuarioBuscado = usuarioRepository.findByMail(mail);
+
+        if (usuarioBuscado == null){
+            LOGGER.error("No existe un usuario con ese correo:"+ mail);
+            throw new ResourceNotFoundException("No esxiste un usuario con ese correo:"+ mail);
+        }
+        List<Reserva> reservasDelUsuario = reservaRepository.findByUsuario(usuarioBuscado);
+        List<ReservaSalidaDto> reservaSalidaDtoList = new ArrayList<>();
+
+        for (Reserva reserva : reservasDelUsuario){
+            ReservaSalidaDto reservaSalidaDto = entidadAdtoSalida(reserva);
+            reservaSalidaDtoList.add(reservaSalidaDto);
+        }
+        LOGGER.info("Listado de todas las reservas del usuario con correo " + mail + '\n'  + reservasDelUsuario);
+        return reservaSalidaDtoList;
     }
 
 

@@ -25,5 +25,10 @@ public class Imagen {
     @JoinColumn(name = "producto_id", referencedColumnName = "id")
     private Producto producto;
 
+    @Override
+    public String toString() {
+        return '\n'+
+                titulo ;
+    }
 }
 

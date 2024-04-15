@@ -63,7 +63,7 @@ public class UsuarioService implements IUsuarioService {
         }
         Usuario usuarioGuardado = usuarioRepository.save(dtoEntradaAEntidad(usuario));
         UsuarioSalidaDto usuarioSalidaDto = entidadADto(usuarioGuardado);
-        LOGGER.info("Nuevo usuario registrado", usuarioSalidaDto);
+        LOGGER.info("Nuevo usuario registrado"+ '\n'+ usuarioGuardado);
         return usuarioSalidaDto;
     }
 

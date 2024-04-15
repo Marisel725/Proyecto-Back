@@ -32,11 +32,9 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return " \n Categoria{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-
-                '}' + '\n';
+        return '\n'+
+                "id=" + id + '\n'+
+                "titulo=" + titulo ;
     }
 
 }

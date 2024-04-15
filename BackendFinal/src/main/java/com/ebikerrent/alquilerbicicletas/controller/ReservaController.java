@@ -1,7 +1,6 @@
 package com.ebikerrent.alquilerbicicletas.controller;
 
 import com.ebikerrent.alquilerbicicletas.dto.entrada.reserva.ReservaEntradaDto;
-import com.ebikerrent.alquilerbicicletas.dto.salida.producto.ProductoSalidaDto;
 import com.ebikerrent.alquilerbicicletas.dto.salida.reserva.ReservaSalidaDto;
 import com.ebikerrent.alquilerbicicletas.exceptions.ResourceNotFoundException;
 import com.ebikerrent.alquilerbicicletas.service.IReservaService;
@@ -106,4 +105,10 @@ public class ReservaController {
         iReservaService.eliminarReserva(id);
         return new ResponseEntity<>("Se eliminó la reserva con ID: " + id, HttpStatus.NO_CONTENT);
     }
+    @GetMapping("/listarPorUsuario/{correo}")
+    public ResponseEntity<List<ReservaSalidaDto>> listarReservasDeUsuario(@PathVariable String correo) throws ResourceNotFoundException {
+        List<ReservaSalidaDto> reservas = iReservaService.listarReservasDeUsuario(correo);
+        return new ResponseEntity<>(reservas, HttpStatus.OK);
+    }
+
 }

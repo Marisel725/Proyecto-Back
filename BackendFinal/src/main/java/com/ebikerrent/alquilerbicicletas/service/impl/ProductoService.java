@@ -3,7 +3,6 @@ package com.ebikerrent.alquilerbicicletas.service.impl;
 import com.ebikerrent.alquilerbicicletas.dto.entrada.modificacion.ProductoModificacionEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoDisponibleEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoEntradaDto;
-import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoPorCategoria;
 import com.ebikerrent.alquilerbicicletas.dto.salida.categoria.CategoriaSalidaDto;
 import com.ebikerrent.alquilerbicicletas.dto.salida.producto.ProductoSalidaDto;
 import com.ebikerrent.alquilerbicicletas.entity.Caracteristica;
@@ -44,7 +43,7 @@ public class ProductoService implements IProductoService {
     public ProductoSalidaDto registrarProducto(ProductoEntradaDto productoEntradaDto) throws ResourceNotFoundException, DuplicateEntryException {
 
         if (productoRepository.findByNombre(productoEntradaDto.getNombre()) != null) {
-            LOGGER.info("Ya existe un producto con el mismo nombre ", productoEntradaDto.getNombre());
+            LOGGER.info("Ya existe un producto con el mismo nombre " + productoEntradaDto.getNombre());
             throw new DuplicateEntryException("Existe un producto con el mismo nombre");
         }
 
@@ -81,7 +80,7 @@ public class ProductoService implements IProductoService {
     public ProductoSalidaDto buscarProductoPorId(Long id) throws ResourceNotFoundException {
         Producto productoBuscado = productoRepository.findById(id).orElse(null);
 
-        ProductoSalidaDto productoEncontrado = null;
+        ProductoSalidaDto productoEncontrado ;
         if (productoBuscado != null) {
             productoEncontrado = entidadAdtoSalida(productoBuscado);
             LOGGER.info("Producto encontrado : " + productoBuscado);
@@ -115,28 +114,27 @@ public class ProductoService implements IProductoService {
 
     @Override
     public void eliminarProducto(Long id) throws ResourceNotFoundException {
+        Producto buscarProducto = productoRepository.findById(id).orElse(null);
 
-        Optional<Producto> buscarProducto = productoRepository.findById(id);
-
-        if (buscarProducto != null) {
-            LOGGER.warn("Se eliminó el producto con el id : " + dtoSalidaAentidad(buscarProductoPorId(id)));
-            productoRepository.deleteById(id);
-        } else {
+        if (buscarProducto == null){
             LOGGER.error("No se encontró el producto con el id : " + id);
             throw new ResourceNotFoundException("No se encontró el producto con el id : " + id);
+        } else {
+            LOGGER.warn("Se eliminó el producto con el id : " + dtoSalidaAentidad(buscarProductoPorId(id)));
+            productoRepository.deleteById(id);
         }
+
     }
 
     @Override
     public ProductoSalidaDto modificarProducto(ProductoModificacionEntradaDto productoModificacionEntradaDto) throws ResourceNotFoundException {
 
-        LOGGER.info("PRODUCTO A MODIFICAR: " + productoModificacionEntradaDto);  //entra sin imags
         Long buscarProductoId = productoModificacionEntradaDto.getId();
-        Optional<Producto> productoBuscado = productoRepository.findById(buscarProductoId);
-        if (!productoBuscado.isPresent()) {
+        Optional<Producto>productoBuscado = productoRepository.findById(buscarProductoId);
+
+        if (productoBuscado.isEmpty()) {
             throw new ResourceNotFoundException("No se encontró el producto con el ID proporcionado: " + buscarProductoId);
         }
-        LOGGER.info("PRODUCTO: " + productoBuscado);
 
         String categoriaTitulo = productoModificacionEntradaDto.getTituloCategoria();
         Categoria categoria = categoriaRepository.findByTitulo(categoriaTitulo);
@@ -154,28 +152,17 @@ public class ProductoService implements IProductoService {
             }
             caracteristicasList.add(caracteristicaBuscada);
         }
-        ProductoSalidaDto productoSalidaDto = null;
+        ProductoSalidaDto productoSalidaDto;
 
-        if (productoBuscado != null) {
-            LOGGER.info("PRODUCTO DENTRO DEL IF: " + productoBuscado);
             Producto productoMap = dtoModificacioAentidad(productoModificacionEntradaDto);
             productoMap.setCategoria(categoria);
             productoMap.setCaracteristicas(caracteristicasList);
-            LOGGER.info("PRODUCTO MAPEADO: " + productoMap);
             productoMap.setImagenes(productoBuscado.get().getImagenes());
-            LOGGER.info("PRODUCTO SETEADO: " + productoMap);
 
             Producto guardarProducto = productoRepository.save(productoMap);
-            LOGGER.info("PRODUCTO GUARDADO: " + guardarProducto);
-
             productoSalidaDto = entidadAdtoSalida(guardarProducto);
-            LOGGER.info("PRODUCTO SALIDA: " + productoSalidaDto);
+            LOGGER.info("El producto fue modificado exitosamente: " + '\n'+ productoMap);
 
-            LOGGER.info("El producto " + productoMap + " fue modificado exitosamente ");
-        } else {
-            LOGGER.info("El producto " + buscarProductoId + " no fue encontrado.");
-            throw new ResourceNotFoundException("El producto: " + productoBuscado + "  no fue encontrado.");
-        }
         return productoSalidaDto;
     }
 
@@ -194,7 +181,7 @@ public class ProductoService implements IProductoService {
             ProductoSalidaDto productoSalidaDto = entidadAdtoSalida(p);
             productoSalidaDtoList.add(productoSalidaDto);
         }
-        LOGGER.info("Listado de todos los productos por Categoria : " + productos);
+        LOGGER.info("Listado de todos los productos por Categoria : " + '\n'+ productos);
 
         return productoSalidaDtoList;
     }
@@ -226,7 +213,7 @@ public class ProductoService implements IProductoService {
         String nombreProducto = productoEntradaDto.getNombre();
         Producto productoPorNombre = productoRepository.findByNombre(nombreProducto);
 
-        ProductoSalidaDto productoEncontrado = null;
+        ProductoSalidaDto productoEncontrado;
         if (productoPorNombre != null) {
             productoEncontrado = entidadAdtoSalida(productoPorNombre);
             LOGGER.info("Producto encontrado por nombre : " + productoPorNombre);

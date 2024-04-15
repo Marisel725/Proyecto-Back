@@ -34,10 +34,9 @@ public class Caracteristica {
 
     @Override
     public String toString() {
-        return "Caracteristica{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", icono='" + icono + '\'' +
-                '}';
+        return '\n'+
+                "id=" + id + '\n'+
+                "Nombre=" + nombre + '\n' +
+                "Icono=" + icono ;
     }
 }

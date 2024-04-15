@@ -11,7 +11,6 @@ import java.util.List;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 @Table(name = "USUARIOS")
 public class Usuario {
     @Id
@@ -44,4 +43,18 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Favorito> favorito = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Usuario:" + '\n'+
+                "ID="+id + '\n'+
+                "nombre=" +nombre + '\n' +
+                "apellido=" + apellido + '\n' +
+                "mail=" +mail + '\n'+
+                "telefono=" +telefono +'\n'+
+                "password=" + password + '\n'+
+                "esAdmin=" + esAdmin +'\n'+
+                "reservas=" +reservas + '\n'+
+                "favorito=" + favorito;
+    }
 }
