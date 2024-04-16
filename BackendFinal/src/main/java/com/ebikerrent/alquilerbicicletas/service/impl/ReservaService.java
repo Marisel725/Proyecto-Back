@@ -127,7 +127,7 @@ public class ReservaService implements IReservaService {
 
         if (usuarioBuscado == null){
             LOGGER.error("No existe un usuario con ese correo:"+ mail);
-            throw new ResourceNotFoundException("No esxiste un usuario con ese correo:"+ mail);
+            throw new ResourceNotFoundException("No existe un usuario con ese correo:"+ mail);
         }
         List<Reserva> reservasDelUsuario = reservaRepository.findByUsuario(usuarioBuscado);
         List<ReservaSalidaDto> reservaSalidaDtoList = new ArrayList<>();
