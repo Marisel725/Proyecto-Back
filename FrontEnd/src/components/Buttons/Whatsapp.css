@@ -2,8 +2,8 @@
     width:70px;
     position: fixed;
     z-index: 5;
-    bottom: 30px;
-    right: 30px;
+    bottom: 70px;
+    right: 15px;
     transition: 0.3s ease-in-out;
 }
 .logoWhatsapp:hover{

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Whatsapp.css'
+import { urlLogoFooter, pathIcons } from '../utils/global.context';
 
 const Whatsapp = () => {
 
@@ -12,7 +13,7 @@ const Whatsapp = () => {
     return (
         <>
             <a href={urlApiWhatsApp} target='_blank'>
-                <img src="https://i.imgur.com/cDxSZsO.png" alt="" className='logoWhatsapp' />
+                <img src={pathIcons.whatsapp} alt="" className='logoWhatsapp' />
             </a>
         </>
 
