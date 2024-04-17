@@ -9,6 +9,7 @@ import com.ebikerrent.alquilerbicicletas.exceptions.ResourceNotFoundException;
 import com.ebikerrent.alquilerbicicletas.repository.ImagenRepository;
 import com.ebikerrent.alquilerbicicletas.repository.ProductoRepository;
 import com.ebikerrent.alquilerbicicletas.service.IImagenService;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,35 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ImagenService implements IImagenService {
     private final Logger LOGGER = LoggerFactory.getLogger(ImagenService.class);
     private final ImagenRepository imagenRepository;
     private final ProductoRepository productoRepository;
-    private final ProductoService productoService;
     private final ModelMapper modelMapper;
-
-    public ImagenService(ImagenRepository imagenRepository, ProductoRepository productoRepository, ProductoService productoService, ModelMapper modelMapper) {
-        this.imagenRepository = imagenRepository;
-        this.productoRepository = productoRepository;
-        this.productoService = productoService;
-        this.modelMapper = modelMapper;
-    }
-
-    @Override
-    public List<ImagenSalidaDto> listarImagenes() {
-        List<Imagen> imagenes = imagenRepository.findAll();
-        List<ImagenSalidaDto> imagenSalidaDtoList = new ArrayList<>();
-
-        for (Imagen img : imagenes) {
-
-            ImagenSalidaDto imagenSalidaDto = entidadAdtoSalida(img);
-            imagenSalidaDtoList.add(imagenSalidaDto);
-        }
-        LOGGER.info("Listado de todos las imagenes : " + imagenes);
-
-        return imagenSalidaDtoList;
-    }
-
 
     @Override
     public ImagenSalidaDto registrarImagen(ImagenEntradaDto imagenEntradaDto) throws ResourceNotFoundException {
@@ -66,12 +44,26 @@ public class ImagenService implements IImagenService {
         return imagenResultado;
     }
 
+    @Override
+    public List<ImagenSalidaDto> listarImagenes() {
+        List<Imagen> imagenes = imagenRepository.findAll();
+        List<ImagenSalidaDto> imagenSalidaDtoList = new ArrayList<>();
+
+        for (Imagen img : imagenes) {
+
+            ImagenSalidaDto imagenSalidaDto = entidadAdtoSalida(img);
+            imagenSalidaDtoList.add(imagenSalidaDto);
+        }
+        LOGGER.info("Listado de todos las imagenes : " + imagenes);
+
+        return imagenSalidaDtoList;
+    }
 
     @Override
     public ImagenSalidaDto buscarImagenPorId(Long id) throws ResourceNotFoundException {
         Imagen imagenBuscado = imagenRepository.findById(id).orElse(null);
 
-        ImagenSalidaDto imagenEncontrado = null;
+        ImagenSalidaDto imagenEncontrado;
         if (imagenBuscado != null) {
             imagenEncontrado = entidadAdtoSalida(imagenBuscado);
             LOGGER.info("Imagen encontrado : " + imagenBuscado);
@@ -95,70 +87,23 @@ public class ImagenService implements IImagenService {
 
     @Override
     public ImagenSalidaDto modificarImagen(ImagenModificacionEntradaDto imagenModificacionEntradaDto) throws ResourceNotFoundException {
-        Imagen imagenAmodificar = dtoModificacioAentidad(imagenModificacionEntradaDto);
-        Imagen imagenPorID = imagenRepository.findById(imagenAmodificar.getId()).orElse(null);
+        Imagen imagenPorID = imagenRepository.findById(imagenModificacionEntradaDto.getId()).orElse(null);
 
-        ImagenSalidaDto imagenSalidaDtoModificado = null;
-        if (imagenPorID != null) {
+        if (imagenPorID == null) {
+            LOGGER.error("No se encuentra la imagen en la BDD");
+            throw new ResourceNotFoundException("No se encuentra la imagen en la BDD");
+        }
+
+            Producto producto = imagenPorID.getProducto();
+
+            Imagen imagenAmodificar = dtoModificacioAentidad(imagenModificacionEntradaDto);
+            imagenAmodificar.setProducto(producto);
             Imagen imagenModificado = imagenRepository.save(imagenAmodificar);
-            imagenSalidaDtoModificado = entidadAdtoSalida((imagenModificado));
-            LOGGER.info("Imagen Modificado : " + imagenModificado);
-        } else
-            LOGGER.error("La imagen no se encontró");
+            ImagenSalidaDto imagenSalidaDtoModificado = entidadAdtoSalida((imagenModificado));
+            LOGGER.info("Imagen Modificada: " + imagenModificado);
 
-
-        return imagenSalidaDtoModificado;
+            return imagenSalidaDtoModificado;
     }
-
-    /*@Override
-    public ImagenSalidaDto modificarImagen(ImagenModificacionEntradaDto imagenModificacionEntradaDto) throws ResourceNotFoundException {
-
-        if(!imagenRepository.findById(imagenModificacionEntradaDto.getId()).isPresent()){
-            LOGGER.info("No existe la imagen con id: " + imagenModificacionEntradaDto.getId());
-            throw new ResourceNotFoundException("No se encontro imagen con id: " + imagenModificacionEntradaDto.getId());
-        }
-
-        List<ProductoSalidaDto> listaProductos = productoService.listarProductos();
-        LOGGER.info("LISTA PRODUCTOS: " + listaProductos);
-        Producto productoAsociado = null;
-        for (ProductoSalidaDto productoSalida : listaProductos){
-            Producto producto = productoRepository.findById(productoSalida.getId()).orElse(null);
-            if(producto.getImagenes().stream().anyMatch(imagen -> imagen.getId().equals(imagenModificacionEntradaDto.getId()))) {
-                productoAsociado = producto;
-                LOGGER.info("PRODUCTO ASOCIADO: " + productoAsociado);
-                break;
-            }
-        }
-        LOGGER.info("PRODUCTO ASOCIADO FUER IF: " + productoAsociado);
-
-        if (productoAsociado == null) {
-            LOGGER.info("No se encontró un producto con ID: " + productoAsociado.getId());
-            throw new ResourceNotFoundException("No se encontró un producto con ID: " + productoAsociado.getId());
-        }
-
-
-        Imagen imagenAmodificar = dtoModificacioAentidad(imagenModificacionEntradaDto);
-        Imagen imagenModificada = imagenRepository.save(imagenAmodificar);
-
-        Set<Imagen> imagenesProducto = productoAsociado.getImagenes();
-        LOGGER.info("IMAGENES PRODUCTO: " + imagenesProducto);
-        imagenesProducto.add(imagenModificada);
-        LOGGER.info("IMAGEN AGREGADA?: " + imagenesProducto);
-        productoAsociado.setImagenes(imagenesProducto);
-        LOGGER.info("PRODUCTO ASOCIADO: " + productoAsociado);
-
-
-        Producto productoGuardado = productoRepository.save(productoAsociado);
-        LOGGER.info("Imagen agregada al producto: " + productoGuardado);
-        //ProductoSalidaDto productoSalidaDto = entidadAdtoSalida(productoGuardado);
-        //LOGGER.info("PRODUCTO SALIDA DTO: " + productoSalidaDto);
-
-        ImagenSalidaDto imagenSalidaDto = entidadAdtoSalida(imagenModificada);
-        LOGGER.info("IMAGEN MODIFICACION SALIDA: " + imagenSalidaDto);
-
-        return imagenSalidaDto;
-    }*/
-
 
     public Imagen dtoEntradaAentidad(ImagenEntradaDto imagenEntradaDto) {
         return modelMapper.map(imagenEntradaDto, Imagen.class);
