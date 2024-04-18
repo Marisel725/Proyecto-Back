@@ -20,4 +20,15 @@ public class UsuarioSalidaDto {
     private String mail;
     private String telefono;
     private boolean esAdmin;
+
+    @Override
+    public String toString() {
+        return "Usuario Registrado:" + '\n'+
+                "ID=" + id + '\n'+
+                "nombre='" + nombre + '\n' +
+                "apellido='" + apellido + '\n' +
+                "mail='" + mail + '\n' +
+                "telefono='" + telefono + '\n' +
+                "esAdmin=" + esAdmin + '\n';
+    }
 }

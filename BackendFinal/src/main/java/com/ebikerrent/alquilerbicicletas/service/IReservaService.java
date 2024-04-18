@@ -4,6 +4,7 @@ import com.ebikerrent.alquilerbicicletas.dto.entrada.modificacion.ReservaModific
 import com.ebikerrent.alquilerbicicletas.dto.entrada.reserva.ReservaEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.salida.reserva.ReservaSalidaDto;
 import com.ebikerrent.alquilerbicicletas.exceptions.ResourceNotFoundException;
+import jakarta.transaction.Transactional;
 
 import java.util.List;
 
@@ -19,6 +20,5 @@ public interface IReservaService {
 
     public boolean buscarReservaPorProducto (ReservaEntradaDto reservaEntradaDto) throws ResourceNotFoundException;
     List<ReservaSalidaDto> listarReservasDeUsuario(String mail) throws ResourceNotFoundException;
-
 
 }

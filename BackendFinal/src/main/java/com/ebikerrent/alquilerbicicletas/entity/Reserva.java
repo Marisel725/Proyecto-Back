@@ -31,6 +31,8 @@ public class Reserva {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "usuario_id", referencedColumnName = "id")
     private Usuario usuario;
+    @OneToOne(mappedBy = "reserva")
+    private Puntuacion puntuacion;
 
     @Override
     public String toString() {

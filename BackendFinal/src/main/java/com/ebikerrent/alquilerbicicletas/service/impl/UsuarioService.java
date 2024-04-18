@@ -33,7 +33,7 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public UsuarioSalidaDto autenticarUsuario(String mail, String password) throws ResourceNotFoundException {
         Optional<Usuario> usuarioOptional = Optional.ofNullable(usuarioRepository.findByMail(mail));
-        UsuarioSalidaDto usuarioSalidaDto = null;
+        UsuarioSalidaDto usuarioSalidaDto;
         if (usuarioOptional.isPresent()) {
             Usuario usuario = usuarioOptional.get();
             // Verificar si la contraseña coincide
@@ -52,7 +52,7 @@ public class UsuarioService implements IUsuarioService {
     @Override
     public List<UsuarioSalidaDto> listar() {
         List<UsuarioSalidaDto> usuarios = usuarioRepository.findAll().stream().map(this::entidadADto).toList();
-        LOGGER.info("Usuarios registrados", usuarios);
+        LOGGER.info("Usuarios registrados: "+ '\n' + usuarios);
         return usuarios;
     }
 
@@ -63,14 +63,14 @@ public class UsuarioService implements IUsuarioService {
         }
         Usuario usuarioGuardado = usuarioRepository.save(dtoEntradaAEntidad(usuario));
         UsuarioSalidaDto usuarioSalidaDto = entidadADto(usuarioGuardado);
-        LOGGER.info("Nuevo usuario registrado"+ '\n'+ usuarioGuardado);
+        LOGGER.info("Nuevo usuario registrado: "+ '\n'+ usuarioGuardado);
         return usuarioSalidaDto;
     }
 
     @Override
     public UsuarioSalidaDto buscarUsuarioPorId(Long id) throws ResourceNotFoundException {
         Usuario usuarioBuscado = usuarioRepository.findById(id).orElse(null);
-        UsuarioSalidaDto usuarioSalidaDto = null;
+        UsuarioSalidaDto usuarioSalidaDto;
 
         if (usuarioBuscado == null) {
             LOGGER.error("No se ecnontro usuario con id:" + id);

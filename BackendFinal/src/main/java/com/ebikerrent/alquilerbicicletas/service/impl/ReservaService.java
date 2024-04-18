@@ -8,6 +8,7 @@ import com.ebikerrent.alquilerbicicletas.entity.Reserva;
 import com.ebikerrent.alquilerbicicletas.entity.Usuario;
 import com.ebikerrent.alquilerbicicletas.exceptions.ResourceNotFoundException;
 import com.ebikerrent.alquilerbicicletas.repository.ProductoRepository;
+import com.ebikerrent.alquilerbicicletas.repository.PuntuacionRepository;
 import com.ebikerrent.alquilerbicicletas.repository.ReservaRepository;
 import com.ebikerrent.alquilerbicicletas.repository.UsuarioRepository;
 import com.ebikerrent.alquilerbicicletas.service.IReservaService;
@@ -27,12 +28,14 @@ public class ReservaService implements IReservaService {
     private final ProductoRepository productoRepository;
     private final ReservaRepository reservaRepository;
     private final UsuarioRepository usuarioRepository;
+    private final PuntuacionRepository puntuacionRepository;
     private final ModelMapper modelMapper;
 
-    public ReservaService(ProductoRepository productoRepository, ReservaRepository reservaRepository, UsuarioRepository usuarioRepository, ModelMapper modelMapper) {
+    public ReservaService(ProductoRepository productoRepository, ReservaRepository reservaRepository, UsuarioRepository usuarioRepository, PuntuacionRepository puntuacionRepository, ModelMapper modelMapper) {
         this.productoRepository = productoRepository;
         this.reservaRepository = reservaRepository;
         this.usuarioRepository = usuarioRepository;
+        this.puntuacionRepository = puntuacionRepository;
         this.modelMapper = modelMapper;
         configuracionMapper();
     }
@@ -94,7 +97,7 @@ public class ReservaService implements IReservaService {
 
         LocalDate fechaInicio = reservaEntradaDto.getFechaInicio();
         LocalDate fechaFin = reservaEntradaDto.getFechaFin();
-        //List<LocalDate> fechasBuscadas = new ArrayList<>();
+
         List<LocalDate> fechasReservadas = productoBuscado.getFechasReservadas();
 
 
@@ -192,6 +195,7 @@ public class ReservaService implements IReservaService {
                         {
                             mapper.map(Reserva::getProducto, ReservaSalidaDto::setProducto);
                             mapper.map(Reserva::getUsuario, ReservaSalidaDto::setUsuario);
+                            mapper.map(Reserva::getPuntuacion, ReservaSalidaDto::setPuntuacionSalidaDto);
                         });
     }
 
