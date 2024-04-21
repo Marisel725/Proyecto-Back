@@ -51,6 +51,8 @@ public class Producto {
     @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Favorito> favorito = new ArrayList<>();
 
+    private int puntuacion;
+
     @Override
     public String toString() {
         return "Producto:" +'\n'+

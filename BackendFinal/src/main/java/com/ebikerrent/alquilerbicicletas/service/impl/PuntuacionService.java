@@ -26,7 +26,7 @@ Semántica y claridad: Si el flujo de tu aplicación se centra en la reserva y l
  */
     @Override
     public PuntuacionSalidaDto puntuarProducto(PuntuacionEntradaDto puntuacionEntradaDto) throws ResourceNotFoundException {
-        int valorPuntuacion = puntuacionEntradaDto.getValor();
+        long valorPuntuacion = puntuacionEntradaDto.getValor();
         if (valorPuntuacion < 1 || valorPuntuacion > 5) {
             LOGGER.error("El valor de la puntuación debe estar entre 1 y 5.");
             throw new ResourceNotFoundException("El valor de la puntuación debe estar entre 1 y 5.");

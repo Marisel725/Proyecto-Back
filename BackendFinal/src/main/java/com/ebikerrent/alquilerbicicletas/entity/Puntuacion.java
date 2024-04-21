@@ -18,7 +18,7 @@ public class Puntuacion {
     private Long id;
     @Column(name = "VALOR")
     @NotNull
-    private int valor;
+    private Long valor;
     @OneToOne
     @JoinColumn(name = "reserva_id")
     private Reserva reserva;

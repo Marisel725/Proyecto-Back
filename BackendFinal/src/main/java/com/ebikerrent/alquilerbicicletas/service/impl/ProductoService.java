@@ -5,14 +5,10 @@ import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoDisponible
 import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.salida.categoria.CategoriaSalidaDto;
 import com.ebikerrent.alquilerbicicletas.dto.salida.producto.ProductoSalidaDto;
-import com.ebikerrent.alquilerbicicletas.entity.Caracteristica;
-import com.ebikerrent.alquilerbicicletas.entity.Categoria;
-import com.ebikerrent.alquilerbicicletas.entity.Producto;
+import com.ebikerrent.alquilerbicicletas.entity.*;
 import com.ebikerrent.alquilerbicicletas.exceptions.DuplicateEntryException;
 import com.ebikerrent.alquilerbicicletas.exceptions.ResourceNotFoundException;
-import com.ebikerrent.alquilerbicicletas.repository.CaracteristicaRepository;
-import com.ebikerrent.alquilerbicicletas.repository.CategoriaRepository;
-import com.ebikerrent.alquilerbicicletas.repository.ProductoRepository;
+import com.ebikerrent.alquilerbicicletas.repository.*;
 import com.ebikerrent.alquilerbicicletas.service.IProductoService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -30,12 +26,16 @@ public class ProductoService implements IProductoService {
     private final ModelMapper modelMapper;
     private final CategoriaRepository categoriaRepository;
     private final CaracteristicaRepository caracteristicaRepository;
+    private final ReservaRepository reservaRepository;
+    private final PuntuacionRepository puntuacionRepository;
 
-    public ProductoService(ProductoRepository productoRepository, ModelMapper modelMapper, CategoriaRepository categoriaRepository, CaracteristicaRepository caracteristicaRepository) {
+    public ProductoService(ProductoRepository productoRepository, ModelMapper modelMapper, CategoriaRepository categoriaRepository, CaracteristicaRepository caracteristicaRepository, ReservaRepository reservaRepository, PuntuacionRepository puntuacionRepository) {
         this.productoRepository = productoRepository;
         this.modelMapper = modelMapper;
         this.categoriaRepository = categoriaRepository;
         this.caracteristicaRepository = caracteristicaRepository;
+        this.reservaRepository = reservaRepository;
+        this.puntuacionRepository = puntuacionRepository;
         configuracionMapper();
     }
 
@@ -277,6 +277,31 @@ public class ProductoService implements IProductoService {
             throw new ResourceNotFoundException("Las fechas solicitadas no están disponibles");
         }
         return productoSalidaDtoList;
+    }
+
+    public Double puntuacionPromedio (Long id){
+        List<Reserva> reservasPorProducto = reservaRepository.findAllByProductoId(id);
+        List<Long> puntuacionList = new ArrayList<>();
+
+        for (Reserva r: reservasPorProducto) {
+            Puntuacion puntuacion = r.getPuntuacion();
+            if (puntuacion != null && puntuacion.getValor() != null) {
+                puntuacionList.add(puntuacion.getValor());
+            }
+        }
+        LOGGER.info("Listado de puntuaciones: " + puntuacionList);
+
+        double promedio = 0;
+
+        for (Long p: puntuacionList) {
+            promedio += p;
+        }
+
+        if (!puntuacionList.isEmpty()) {
+            promedio /= puntuacionList.size();
+        }
+        LOGGER.info("El promedio de la puntuación es:" + promedio);
+        return promedio;
     }
 
 

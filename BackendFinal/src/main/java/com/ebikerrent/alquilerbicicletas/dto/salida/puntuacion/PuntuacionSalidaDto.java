@@ -11,6 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PuntuacionSalidaDto {
     private Long id;
-    private int valor;
+    private Long valor;
     private Long reservaId;
 }

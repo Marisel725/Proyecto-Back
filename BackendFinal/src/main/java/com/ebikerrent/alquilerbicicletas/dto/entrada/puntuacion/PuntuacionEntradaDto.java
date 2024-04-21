@@ -16,5 +16,5 @@ public class PuntuacionEntradaDto {
     @NotNull(message = "El id de la reserva no puede ser nula.")
     private Long reservaId;
     @NotNull (message = "El valor de la puntuacion no puede ser nula.")
-    private int valor;
+    private Long valor;
 }

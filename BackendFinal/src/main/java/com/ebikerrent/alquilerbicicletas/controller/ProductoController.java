@@ -5,15 +5,18 @@ import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoDisponible
 import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoEntradaDto;
 import com.ebikerrent.alquilerbicicletas.dto.entrada.producto.ProductoPorCategoria;
 import com.ebikerrent.alquilerbicicletas.dto.salida.producto.ProductoSalidaDto;
+import com.ebikerrent.alquilerbicicletas.entity.Reserva;
 import com.ebikerrent.alquilerbicicletas.exceptions.DuplicateEntryException;
 import com.ebikerrent.alquilerbicicletas.exceptions.ResourceNotFoundException;
 import com.ebikerrent.alquilerbicicletas.service.IProductoService;
+import com.ebikerrent.alquilerbicicletas.service.IReservaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -142,5 +145,8 @@ public class ProductoController {
     @GetMapping("/listarProductosPorCategoria/{titulo}")
     public ResponseEntity<List<ProductoSalidaDto>> listarProductoPorCategoria(@PathVariable String titulo) throws ResourceNotFoundException {
         return new ResponseEntity<>(iProductoService.listarProductoPorCategoria(titulo),HttpStatus.OK);
+    }@GetMapping("/promedio/{productoId}")
+    public ResponseEntity<Double> obtenerPuntuacionPromedio(@PathVariable Long productoId) throws ResourceNotFoundException {
+        return new ResponseEntity<>(iProductoService.puntuacionPromedio(productoId), HttpStatus.OK);
     }
 }

@@ -20,4 +20,5 @@ public interface IProductoService {
     List<ProductoSalidaDto> listarProductoPorCategoria(String titulo) throws ResourceNotFoundException;
    ProductoSalidaDto buscarProductoPorNombre(ProductoEntradaDto productoEntradaDto) throws ResourceNotFoundException;
     List<ProductoSalidaDto> buscarProductoDisponible(ProductoDisponibleEntradaDto productoDisponibleEntradaDto) throws ResourceNotFoundException;
+    Double puntuacionPromedio (Long id) throws ResourceNotFoundException;
 }

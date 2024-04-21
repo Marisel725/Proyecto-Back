@@ -33,7 +33,7 @@ public class ProductoSalidaDto {
     @JsonProperty("reservas")
     private List<LocalDate> fechasReservadas = new ArrayList<>();
 
-
+    private int puntuacion;
 
 
 
