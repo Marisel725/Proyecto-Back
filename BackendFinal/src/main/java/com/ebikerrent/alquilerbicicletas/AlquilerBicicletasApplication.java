@@ -1,15 +1,8 @@
 package com.ebikerrent.alquilerbicicletas;
 
 
-import com.ebikerrent.alquilerbicicletas.entity.Caracteristica;
-import com.ebikerrent.alquilerbicicletas.entity.Categoria;
-import com.ebikerrent.alquilerbicicletas.entity.Usuario;
-import com.ebikerrent.alquilerbicicletas.entity.Producto;
-import com.ebikerrent.alquilerbicicletas.entity.Imagen;
-import com.ebikerrent.alquilerbicicletas.repository.CaracteristicaRepository;
-import com.ebikerrent.alquilerbicicletas.repository.CategoriaRepository;
-import com.ebikerrent.alquilerbicicletas.repository.UsuarioRepository;
-import com.ebikerrent.alquilerbicicletas.repository.ProductoRepository;
+import com.ebikerrent.alquilerbicicletas.entity.*;
+import com.ebikerrent.alquilerbicicletas.repository.*;
 import jakarta.annotation.PostConstruct;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -21,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -38,27 +32,36 @@ public class AlquilerBicicletasApplication {
 	private CaracteristicaRepository caracteristicaRepository;
 	@Autowired
 	private ProductoRepository productoRepository;
-	private static final Logger LOGGER= LoggerFactory.getLogger(AlquilerBicicletasApplication.class);
+	@Autowired
+	private ReservaRepository reservaRepository;
+	@Autowired
+	private PuntuacionRepository puntuacionRepository;
+	private static final Logger LOGGER = LoggerFactory.getLogger(AlquilerBicicletasApplication.class);
+
 	public static void main(String[] args) throws SQLException, ClassNotFoundException {
 
-		SpringApplication.run(AlquilerBicicletasApplication.class, args) ;
+		SpringApplication.run(AlquilerBicicletasApplication.class, args);
 		LOGGER.info("---eBikeRent EJECUTANDOSE---");
 		LOGGER.info("---eBikeRent EJECUTANDOSE---");
 	}
+
 	@Bean
-	public ModelMapper modelMapper(){
+	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
 
 	@PostConstruct
 	public void inicializar() {
 		inicializarAdmin();
+		inicializarUsuario();
 		inicializarCategorias();
 		inicializarCaracteriscticas();
 		inicializarProductos();
+		inicializarReservas();
+		inicializarPuntuacion();
 	}
 
-	public void inicializarAdmin(){
+	public void inicializarAdmin() {
 		if (usuarioRepository.findByMail("admin@admin.com") == null) {
 			Usuario user = new Usuario();
 			user.setNombre("Admin");
@@ -67,6 +70,19 @@ public class AlquilerBicicletasApplication {
 			user.setTelefono("3101234567");
 			user.setPassword("password");
 			user.setEsAdmin(true);
+			usuarioRepository.save(user);
+		}
+	}
+
+	public void inicializarUsuario() {
+		if (usuarioRepository.findByMail("usuario@usuario.com") == null) {
+			Usuario user = new Usuario();
+			user.setNombre("Usuario");
+			user.setApellido("Usuario");
+			user.setMail("usuario@usuario.com");
+			user.setTelefono("123456789");
+			user.setPassword("12345678");
+			user.setEsAdmin(false);
 			usuarioRepository.save(user);
 		}
 	}
@@ -123,10 +139,10 @@ public class AlquilerBicicletasApplication {
 		}
 	}
 
-	private void inicializarProductos(){
-		if(productoRepository.count() == 0){
+	private void inicializarProductos() {
+		if (productoRepository.count() == 0) {
 			Set<Caracteristica> caracteristicasProductos = new HashSet<>();
-			for(Caracteristica c: caracteristicaRepository.findAll()){
+			for (Caracteristica c : caracteristicaRepository.findAll()) {
 				caracteristicasProductos.add(c);
 			}
 
@@ -154,7 +170,7 @@ public class AlquilerBicicletasApplication {
 					"Bicicleta Roadmaster Fire Shimano L R700 18Vel Negro Rojo"
 			};
 
-			String categoriasProductos[] ={
+			String categoriasProductos[] = {
 					"Urbana",
 					"Montaña",
 					"Montaña",
@@ -199,17 +215,17 @@ public class AlquilerBicicletasApplication {
 					"https://falabella.scene7.com/is/image/FalabellaCO/gsc_119642533_2421618_1"
 			};
 
-			for(int i=0; i< nombresProductos.length; i++){
+			for (int i = 0; i < nombresProductos.length; i++) {
 				Categoria categoria = categoriaRepository.findByTitulo(categoriasProductos[i]);
-				
+
 				List<Imagen> imagenes = new ArrayList<>();
 
-				for (int j = 0; j < 5 ; j++) {
+				for (int j = 0; j < 5; j++) {
 					Imagen imagen = new Imagen();
-					imagen.setTitulo("Imagen_" + j +" "+ nombresProductos[i]);
-					if(j == 0){
+					imagen.setTitulo("Imagen_" + j + " " + nombresProductos[i]);
+					if (j == 0) {
 						imagen.setUrlImg(urlImagenes[i]);
-					}else {
+					} else {
 						imagen.setUrlImg(urlImagenes[j]);
 					}
 					imagenes.add(imagen);
@@ -227,4 +243,41 @@ public class AlquilerBicicletasApplication {
 		}
 	}
 
+	private void inicializarReservas() {
+		if (reservaRepository.count() == 0) {
+			Reserva reserva1 = new Reserva();
+			reserva1.setFechaInicio(LocalDate.now());
+			reserva1.setFechaFin(LocalDate.now().plusDays(2));
+			Producto producto1 = productoRepository.findByNombre("Bicicleta Gw Hyena Shimano L R29 21 Velocidades Negro");
+			reserva1.setProducto(producto1);
+			Usuario usuario1 = usuarioRepository.findByMail("usuario@usuario.com");
+			reserva1.setUsuario(usuario1);
+			reservaRepository.save(reserva1);
+
+			Reserva reserva2 = new Reserva();
+			reserva2.setFechaInicio(LocalDate.now().plusDays(3));
+			reserva2.setFechaFin(LocalDate.now().plusDays(5));
+			reserva2.setProducto(producto1);
+			reserva2.setUsuario(usuario1);
+
+			reservaRepository.save(reserva2);
+		}
+	}
+
+	public void inicializarPuntuacion() {
+		if (puntuacionRepository.count() == 0) {
+			Puntuacion puntuacion1 = new Puntuacion();
+			puntuacion1.setValor(5L);
+			Reserva reserva1 = reservaRepository.findById(1);
+			puntuacion1.setReserva(reserva1);
+			puntuacionRepository.save(puntuacion1);
+
+			Puntuacion puntuacion2 = new Puntuacion();
+			puntuacion2.setValor(4L);
+			Reserva reserva2 = reservaRepository.findById(2);
+			puntuacion2.setReserva(reserva2);
+			puntuacionRepository.save(puntuacion2);
+
+		}
+	}
 }
