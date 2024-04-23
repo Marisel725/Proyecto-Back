@@ -16,7 +16,16 @@ header {
 .header-flex-container{
     display: flex;
     justify-content: space-between;
+    width: 100vw;
 }
+
+header .header-logo-usuario{
+    width: 33.33px;
+    height: 33.33px;
+    margin: 0 15px 0 0;
+}
+
+
 
 
 .header-lema{
@@ -34,6 +43,7 @@ header {
 
 .right-header{
     display: flex;
+    
 }
 .links-header{
     display: flex;
@@ -52,8 +62,6 @@ header {
 }
 
 @media (min-width: 431px){
-
-  
 
     header{
         height: 80px;

@@ -110,13 +110,18 @@ const Header = () => {
 
   return (
     <header className='header-flex-container'>
+
       <div className='links-header'>
         <Link to={'/'} className='link-header' onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Inicio</Link>
         <HashLink to='#categorias' smooth offset={-1000} className='link-header'>Categorías</HashLink>
       </div>
+
       <div className='header-container-logo-empresa'>
-        <Link to={'/'}><img src="https://i.imgur.com/MN8hsjZ.png" alt='Home' className='header-logo-empresa' /></Link>
+        <Link to={'/'}>
+          <img src="https://i.imgur.com/MN8hsjZ.png" alt='Home' className='header-logo-empresa' />
+        </Link>
       </div>
+
       <div className='right-header'>
         <div className='links-header'>
           <Link to={"/sobrenosotros"} className='link-header'>Sobre nosotros</Link>
@@ -124,6 +129,7 @@ const Header = () => {
         </div>
         <HamburgMenuUser options={optionsList} userData={objSession} />
       </div>
+      
     </header>
   )
 }
