@@ -279,7 +279,7 @@ public class ProductoService implements IProductoService {
         return productoSalidaDtoList;
     }
 
-    public Double puntuacionPromedio (Long id){
+    public Double puntuacionPromedio (Long id) throws ResourceNotFoundException {
         List<Reserva> reservasPorProducto = reservaRepository.findAllByProductoId(id);
         List<Long> puntuacionList = new ArrayList<>();
 
@@ -291,15 +291,19 @@ public class ProductoService implements IProductoService {
         }
         LOGGER.info("Listado de puntuaciones: " + puntuacionList);
 
+        if (puntuacionList.isEmpty()){
+            LOGGER.error("El producto no fue puntuado aún");
+            throw new ResourceNotFoundException("El producto no fue puntuado aún");
+        }
+
         double promedio = 0;
 
         for (Long p: puntuacionList) {
             promedio += p;
         }
 
-        if (!puntuacionList.isEmpty()) {
-            promedio /= puntuacionList.size();
-        }
+        promedio /= puntuacionList.size();
+
         LOGGER.info("El promedio de la puntuación es:" + promedio);
         return promedio;
     }
