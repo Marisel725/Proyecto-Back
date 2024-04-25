@@ -1,0 +1,2081 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "E-BikeRent",
+    "version": "v0",
+    "description": "Proyecto integrador grupo 2."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/productos/modificar": {
+      "put": {
+        "tags": [
+          "producto-controller"
+        ],
+        "summary": "Modificación de un producto",
+        "operationId": "modificarProducto",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoModificacionEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Producto no encontrado",
+            "content": {}
+          },
+          "500": {
+            "description": "UServer error"
+          },
+          "200": {
+            "description": "Producto actualizado correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductoSalidaDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/imagen/modificar": {
+      "put": {
+        "tags": [
+          "imagen-controller"
+        ],
+        "summary": "Modificación de una imagen",
+        "operationId": "modificarImagen",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImagenModificacionEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Imagen no encontrada",
+            "content": {}
+          },
+          "500": {
+            "description": "UServer error"
+          },
+          "200": {
+            "description": "Imagen actualizada correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImagenSalidaDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/categorias/modificar": {
+      "put": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "summary": "Modificación de una categoria",
+        "operationId": "modificarCategoria",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaModificacionEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Categoría no encontrado",
+            "content": {}
+          },
+          "200": {
+            "description": "Categoría actualizada correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductoSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "UServer error"
+          }
+        }
+      }
+    },
+    "/usuarios/registrar": {
+      "post": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "summary": "Registro de un nuevo usuario",
+        "operationId": "registrar",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UsuarioEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Usuario guardado correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/usuarios/login": {
+      "post": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "summary": "Login de un nuevo usuario",
+        "operationId": "autenticarUsuario",
+        "parameters": [
+          {
+            "name": "mail",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Usuario guardado correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/reservas/registrar": {
+      "post": {
+        "tags": [
+          "reserva-controller"
+        ],
+        "summary": "Registro de una nueva reserva",
+        "operationId": "registrarReserva",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservaEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Reserva guardada correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/reservas/buscarReservaPorProducto": {
+      "post": {
+        "tags": [
+          "reserva-controller"
+        ],
+        "summary": "Búsqueda de reserva por producto",
+        "operationId": "buscarReservaPorProducto",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReservaEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Búsqueda de reserva por producto",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/productos/registrar": {
+      "post": {
+        "tags": [
+          "producto-controller"
+        ],
+        "summary": "Registro de un nuevo producto",
+        "operationId": "registrarProducto",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Producto guardado correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductoSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/productos/listarProductosPorCategoria": {
+      "post": {
+        "tags": [
+          "producto-controller"
+        ],
+        "summary": "Listado de todos los productos por categoria",
+        "operationId": "listarProductoPorCategoria",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoPorCategoria"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Listado de productos por categoria obtenido correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductoSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/productos/buscarProductoDisponible": {
+      "post": {
+        "tags": [
+          "producto-controller"
+        ],
+        "summary": "Listado de todos los productos disponibles para reservar",
+        "operationId": "buscarProductoDisponible",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductoDisponibleEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Listado de productos obtenido correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductoSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/imagen/registrar": {
+      "post": {
+        "tags": [
+          "imagen-controller"
+        ],
+        "summary": "Registro de una nueva imagen",
+        "operationId": "registrarImagen",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImagenEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Imagen guardada correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImagenSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/categorias/registrar": {
+      "post": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "summary": "Registro de una nueva categoría",
+        "operationId": "registrarCategoria",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoriaEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Categoría guardado correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/caracteristicas/registrar": {
+      "post": {
+        "tags": [
+          "caracteristica-controller"
+        ],
+        "summary": "Registro de una nueva característica",
+        "operationId": "registrarCaracteristica",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CaracteristicaEntradaDto"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "característica guardada correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaracteristicaSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/usuarios/listar": {
+      "get": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "summary": "Listado de todos los usuarios",
+        "operationId": "listar",
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Listado de usuarios obtenido correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/usuarios/buscarPorId/{id}": {
+      "get": {
+        "tags": [
+          "usuario-controller"
+        ],
+        "summary": "Búsqueda de un usuario por ID",
+        "operationId": "buscarPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {}
+          },
+          "404": {
+            "description": "Usuario no encontrado",
+            "content": {}
+          },
+          "200": {
+            "description": "Usuario obtenido correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UsuarioSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/reservas/listar": {
+      "get": {
+        "tags": [
+          "reserva-controller"
+        ],
+        "summary": "Listado de todas las reservas",
+        "operationId": "listarTodasLasReservas",
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          },
+          "200": {
+            "description": "Listado de reservas obtenida correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaSalidaDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reservas/buscarReservaPorId/{id}": {
+      "get": {
+        "tags": [
+          "reserva-controller"
+        ],
+        "summary": "Búsqueda de una reserva por ID",
+        "operationId": "buscarReservaPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {}
+          },
+          "404": {
+            "description": "Reserva no encontrada",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error"
+          },
+          "200": {
+            "description": "Reserva obtenida correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReservaSalidaDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/productos/listar": {
+      "get": {
+        "tags": [
+          "producto-controller"
+        ],
+        "summary": "Listado de todos los productos",
+        "operationId": "listarTodosLosProductos",
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Listado de productos obtenido correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductoSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/productos/buscarPorId/{id}": {
+      "get": {
+        "tags": [
+          "producto-controller"
+        ],
+        "summary": "Búsqueda de un producto por ID",
+        "operationId": "buscarProductoPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {}
+          },
+          "404": {
+            "description": "Producto no encontrado",
+            "content": {}
+          },
+          "200": {
+            "description": "Producto obtenido correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductoSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/imagen/listar": {
+      "get": {
+        "tags": [
+          "imagen-controller"
+        ],
+        "summary": "Listado de todas las imágenes",
+        "operationId": "listarImagenes",
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          },
+          "200": {
+            "description": "Listado de imágenes obtenido correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImagenSalidaDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/imagen/buscarPorId/{id}": {
+      "get": {
+        "tags": [
+          "imagen-controller"
+        ],
+        "summary": "Búsqueda de una imagen por ID",
+        "operationId": "buscarImagenPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {}
+          },
+          "404": {
+            "description": "Imagen no encontrada",
+            "content": {}
+          },
+          "200": {
+            "description": "Imagen obtenida correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductoSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/categorias/listar": {
+      "get": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "summary": "Listado de todas las categorías",
+        "operationId": "listarCategorias",
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "Listado de categorías obtenido correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProductoSalidaDto"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/categorias/buscarPorId/{id}": {
+      "get": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "summary": "Búsqueda de una categoría por ID",
+        "operationId": "buscarCategoriaPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {}
+          },
+          "404": {
+            "description": "Categoría no encontrada",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error"
+          },
+          "200": {
+            "description": "Categoría obtenida correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CategoriaSalidaDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/caracteristicas/listar": {
+      "get": {
+        "tags": [
+          "caracteristica-controller"
+        ],
+        "summary": "Listado de todas las características",
+        "operationId": "listarCaracteristicas",
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {}
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          },
+          "200": {
+            "description": "Listado de características obtenida correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaracteristicaSalidaDto"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reservas/eliminarReserva/{id}": {
+      "delete": {
+        "tags": [
+          "reserva-controller"
+        ],
+        "summary": "Eliminación de una reserva por ID",
+        "operationId": "eliminarReserva",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {}
+          },
+          "404": {
+            "description": "Reserva no encontrada",
+            "content": {}
+          },
+          "204": {
+            "description": "Reserva eliminada correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/productos/eliminar/{id}": {
+      "delete": {
+        "tags": [
+          "producto-controller"
+        ],
+        "summary": "Eliminación de un producto por ID",
+        "operationId": "eliminarProducto",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {}
+          },
+          "404": {
+            "description": "Producto no encontrado",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error"
+          },
+          "204": {
+            "description": "Producto eliminado correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/imagen/eliminar/{id}": {
+      "delete": {
+        "tags": [
+          "imagen-controller"
+        ],
+        "summary": "Eliminación de una imagen por ID",
+        "operationId": "eliminarProducto_1",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {}
+          },
+          "404": {
+            "description": "Imagen no encontrado",
+            "content": {}
+          },
+          "204": {
+            "description": "Imagen eliminada correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/categorias/eliminar/{id}": {
+      "delete": {
+        "tags": [
+          "categoria-controller"
+        ],
+        "summary": "Eliminación de una categoría por ID",
+        "operationId": "eliminarCategoria",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "ID inválido",
+            "content": {}
+          },
+          "404": {
+            "description": "Categoría no encontrada",
+            "content": {}
+          },
+          "500": {
+            "description": "Server error"
+          },
+          "204": {
+            "description": "Categoría eliminada correctamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/caracteristicas/eliminar/{id}": {
+      "delete": {
+        "tags": [
+          "caracteristica-controller"
+        ],
+        "operationId": "eliminarCaracteristica",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ProductoModificacionEntradaDto": {
+        "required": [
+          "caracteristicas",
+          "categoria",
+          "descripcion",
+          "id",
+          "nombre"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "categoria": {
+            "type": "string"
+          },
+          "caracteristicas": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CaracteristicaSalidaDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "icono": {
+            "type": "string"
+          }
+        }
+      },
+      "CategoriaSalidaDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "titulo": {
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "imagen": {
+            "type": "string"
+          }
+        }
+      },
+      "ImagenSalidaDtoProducto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "titulo": {
+            "type": "string"
+          },
+          "urlImg": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductoSalidaDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "categoria": {
+            "$ref": "#/components/schemas/CategoriaSalidaDto"
+          },
+          "imagenes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImagenSalidaDtoProducto"
+            }
+          },
+          "caracteristicas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CaracteristicaSalidaDto"
+            }
+          },
+          "reservas": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      },
+      "ImagenModificacionEntradaDto": {
+        "required": [
+          "id",
+          "titulo",
+          "urlImg"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "titulo": {
+            "type": "string"
+          },
+          "urlImg": {
+            "type": "string"
+          }
+        }
+      },
+      "ImagenSalidaDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "titulo": {
+            "type": "string"
+          },
+          "urlImg": {
+            "type": "string"
+          },
+          "nombreProducto": {
+            "type": "string"
+          }
+        }
+      },
+      "CategoriaModificacionEntradaDto": {
+        "required": [
+          "descripcion",
+          "id",
+          "imagen",
+          "titulo"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "titulo": {
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "imagen": {
+            "type": "string"
+          }
+        }
+      },
+      "UsuarioEntradaDto": {
+        "required": [
+          "apellido",
+          "mail",
+          "nombre",
+          "password",
+          "telefono"
+        ],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "maxLength": 250,
+            "minLength": 1,
+            "type": "string"
+          },
+          "apellido": {
+            "maxLength": 250,
+            "minLength": 1,
+            "type": "string"
+          },
+          "mail": {
+            "maxLength": 250,
+            "minLength": 1,
+            "type": "string"
+          },
+          "telefono": {
+            "maxLength": 20,
+            "minLength": 5,
+            "pattern": "\\d+",
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 250,
+            "minLength": 1,
+            "type": "string"
+          },
+          "esAdmin": {
+            "type": "boolean"
+          }
+        }
+      },
+      "UsuarioSalidaDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "nombre": {
+            "type": "string"
+          },
+          "apellido": {
+            "type": "string"
+          },
+          "mail": {
+            "type": "string"
+          },
+          "telefono": {
+            "type": "string"
+          },
+          "esAdmin": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ReservaEntradaDto": {
+        "required": [
+          "correo",
+          "fechaFin",
+          "fechaInicio",
+          "producto_id"
+        ],
+        "type": "object",
+        "properties": {
+          "fechaInicio": {
+            "type": "string",
+            "format": "date"
+          },
+          "fechaFin": {
+            "type": "string",
+            "format": "date"
+          },
+          "producto_id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "correo": {
+            "type": "string"
+          }
+        }
+      },
+      "ReservaSalidaDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "fechaInicio": {
+            "type": "string",
+            "format": "date"
+          },
+          "fechaFin": {
+            "type": "string",
+            "format": "date"
+          },
+          "usuario": {
+            "$ref": "#/components/schemas/UsuarioSalidaDto"
+          },
+          "producto": {
+            "$ref": "#/components/schemas/ProductoSalidaDto"
+          }
+        }
+      },
+      "ImagenEntradaDtoProducto": {
+        "required": [
+          "titulo",
+          "urlImg"
+        ],
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string"
+          },
+          "urlImg": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductoEntradaDto": {
+        "required": [
+          "categoria",
+          "descripcion",
+          "nombre"
+        ],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "maxLength": 250,
+            "minLength": 1,
+            "pattern": "^[A-Z0-9]+(\\s+[A-Z0-9]+)*$",
+            "type": "string"
+          },
+          "descripcion": {
+            "maxLength": 250,
+            "minLength": 1,
+            "type": "string"
+          },
+          "imagenes": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImagenEntradaDtoProducto"
+            }
+          },
+          "categoria": {
+            "type": "string"
+          },
+          "caracteristicas": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "ProductoPorCategoria": {
+        "required": [
+          "categoria"
+        ],
+        "type": "object",
+        "properties": {
+          "categoria": {
+            "type": "string"
+          }
+        }
+      },
+      "ProductoDisponibleEntradaDto": {
+        "required": [
+          "fechaFin",
+          "fechaInicio"
+        ],
+        "type": "object",
+        "properties": {
+          "nombreProducto": {
+            "maxLength": 250,
+            "minLength": 0,
+            "pattern": "^[A-Z0-9\\s]*$",
+            "type": "string"
+          },
+          "fechaInicio": {
+            "type": "string",
+            "format": "date"
+          },
+          "fechaFin": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "ImagenEntradaDto": {
+        "required": [
+          "titulo",
+          "urlImg"
+        ],
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string"
+          },
+          "urlImg": {
+            "type": "string"
+          },
+          "producto_id": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CategoriaEntradaDto": {
+        "required": [
+          "descripcion",
+          "imagen",
+          "titulo"
+        ],
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string"
+          },
+          "descripcion": {
+            "type": "string"
+          },
+          "imagen": {
+            "type": "string"
+          }
+        }
+      },
+      "CaracteristicaEntradaDto": {
+        "required": [
+          "icono",
+          "nombre"
+        ],
+        "type": "object",
+        "properties": {
+          "nombre": {
+            "maxLength": 250,
+            "minLength": 1,
+            "type": "string"
+          },
+          "icono": {
+            "maxLength": 250,
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
