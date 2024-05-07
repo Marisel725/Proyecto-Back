@@ -54,10 +54,9 @@ public class GlobalExceptionHandler {
         return exceptionMessage;
     }
 
-    @ExceptionHandler({MethodArgumentNotValidException.class, HttpMessageNotReadableException.class})
+    @ExceptionHandler({MethodArgumentNotValidException.class})
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public Map<String, String> procesarValidationException(MethodArgumentNotValidException exception)
-    {
+    public Map<String, String> procesarValidationException(MethodArgumentNotValidException exception) {
         Map<String, String> exceptionMessage = new HashMap<>();
         exception.getBindingResult().getAllErrors().forEach((error) -> {
             String fieldName = ((FieldError) error).getField();

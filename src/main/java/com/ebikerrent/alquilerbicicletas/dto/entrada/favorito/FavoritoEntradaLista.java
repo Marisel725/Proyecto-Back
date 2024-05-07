@@ -16,7 +16,7 @@ import lombok.Setter;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FavoritoEntradaLista {
     @NotNull(message = "El usuario no puede ser nulo")
-    @NotBlank(message = "El usuario debe esepecificarse")
+    @NotBlank(message = "El usuario debe especificarse")
     @Email
     private String correo;
 }

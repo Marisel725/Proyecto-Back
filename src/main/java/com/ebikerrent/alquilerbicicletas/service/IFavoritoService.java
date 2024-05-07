@@ -11,7 +11,6 @@ import java.util.List;
 
 public interface IFavoritoService {
     FavoritoSalida agregarProductoFavorito(FavoritoEntrada productoFavoritoEntrada) throws ResourceNotFoundException;
-    List<FavoritoSalida> listarProductosFavoritos();
     List<ProductoSalidaDto> listarProductosFavoritosPorUsuario(FavoritoEntradaLista favoritoEntradaLista) throws ResourceNotFoundException;
-    void eliminarFavorito();
+    void eliminarFavorito(Long id) throws ResourceNotFoundException;
 }

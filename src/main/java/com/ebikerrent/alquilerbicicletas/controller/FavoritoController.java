@@ -26,33 +26,18 @@ import java.util.List;
 public class FavoritoController {
     private final IFavoritoService iFavoritoService;
 
-    @Operation(summary = "Se agrega un producto a favoritos")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Producto agregado a favoritos correctamente",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = FavoritoSalida.class))}),
-            @ApiResponse(responseCode = "400", description = "Bad Request",
-                    content = @Content),
-            @ApiResponse(responseCode = "500", description = "Server error",
-                    content = @Content)
-    })
     @PostMapping("/agregar")
     public ResponseEntity<FavoritoSalida> agregarProductoFavorito(@Valid @RequestBody FavoritoEntrada productoFavoritoEntrada) throws ResourceNotFoundException {
         return new ResponseEntity<>(iFavoritoService.agregarProductoFavorito(productoFavoritoEntrada), HttpStatus.CREATED);
     }
-
-    @Operation(summary = "Listado de todos los productos favoritos por usuario")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Listado de productos favoritos por usuario obtenido correctamente",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ProductoSalidaDto.class))}),
-            @ApiResponse(responseCode = "400", description = "Bad Request",
-                    content = @Content),
-            @ApiResponse(responseCode = "500", description = "Server error",
-                    content = @Content)
-    })
-    @PostMapping("/listarFavoritosPorUsuario")
+    @GetMapping("/listarFavoritosPorUsuario")
     public ResponseEntity<List<ProductoSalidaDto>> listarProductosFavoritosPorUsuario(@Valid @RequestBody FavoritoEntradaLista favoritoEntradaLista) throws ResourceNotFoundException {
         return new ResponseEntity<>(iFavoritoService.listarProductosFavoritosPorUsuario(favoritoEntradaLista),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/eliminar/{id}")
+    public ResponseEntity<String> eliminarFavorito(@PathVariable Long id) throws ResourceNotFoundException {
+        iFavoritoService.eliminarFavorito(id);
+        return new ResponseEntity<>("Favorito eliminado correctamente", HttpStatus.OK);
     }
 }

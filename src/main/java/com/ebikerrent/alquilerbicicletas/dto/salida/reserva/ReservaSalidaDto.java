@@ -21,7 +21,7 @@ public class ReservaSalidaDto {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     @JsonProperty("producto")
-    @JsonIgnoreProperties(value = {"id","descripcion","imagenes","categoria","caracteristicas","fechasReservadas"})
+    @JsonIgnoreProperties(value = {"id","descripcion","imagenes","categoria","caracteristicas","fechasReservadas","puntuacion"})
     private ProductoSalidaDto producto;
     private UsuarioSalidaDto usuario;
     @JsonProperty("puntuacion")

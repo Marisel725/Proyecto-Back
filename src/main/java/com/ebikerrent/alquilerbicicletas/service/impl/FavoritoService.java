@@ -50,10 +50,6 @@ public class FavoritoService implements IFavoritoService {
         Producto producto = productoRepository.findById(productoId).orElse(null);
         Usuario usuario= usuarioRepository.findByMail(usuarioCorreo);
 
-        if (!favorito) {
-            LOGGER.info("Debe indicar el producto en true para agregarlo a favoritos");
-            throw new ResourceNotFoundException("Debe indicar el producto en true para agregarlo a favoritos");
-        }
         if (producto == null) {
             LOGGER.info("No existe un producto con ID: " + productoId);
             throw new ResourceNotFoundException("No existe un producto con ID: " + productoId);
@@ -71,8 +67,8 @@ public class FavoritoService implements IFavoritoService {
             Favorito favoritoEntidad = dtoEntradaAentidad(favoritoEntrada);
             favoritoEntidad.setProducto(producto);
             favoritoEntidad.setUsuario(usuario);
-            favoritoEntidad.getFavorito();
-
+            favoritoEntidad.setFavorito(favorito);
+            LOGGER.info("Se marcó este producto como favorito:" +  producto.getNombre());
             favoritoRepository.save(favoritoEntidad);
             favoritoSalida = entidadAdtoSalida(favoritoEntidad);
 
@@ -80,11 +76,6 @@ public class FavoritoService implements IFavoritoService {
             favoritoSalida.setUsuario(entidadUsuarioAdtoSalida(usuario));
         }
         return favoritoSalida;
-    }
-
-    @Override
-    public List<FavoritoSalida> listarProductosFavoritos() {
-        return null;
     }
 
     @Override
@@ -106,13 +97,21 @@ public class FavoritoService implements IFavoritoService {
             LOGGER.info("No tiene productos en la lista de favoritos");
             throw new ResourceNotFoundException("No tiene productos en la lista de favoritos");
         }
+        LOGGER.info("Listado de todos los productos favoritos:" + productosFavoritos);
         return productosFavoritos;
     }
 
     @Override
-    public void eliminarFavorito() {
+    public void eliminarFavorito(Long id) throws ResourceNotFoundException {
+        if (!favoritoRepository.existsById(id)) {
+            LOGGER.info("No se encontró el favorito con el ID: " + id);
+            throw new ResourceNotFoundException("No se encontró el favorito con el ID: " + id);
+        }
 
+        favoritoRepository.deleteById(id);
+        LOGGER.info("Se eliminó el favorito con el ID: " + id);
     }
+
     private void configuracionMapper() {
 
         modelMapper.typeMap(ProductoSalidaDto.class, FavoritoSalida.class)
@@ -124,10 +123,7 @@ public class FavoritoService implements IFavoritoService {
     }
 
     private FavoritoSalida entidadAdtoSalida(Favorito favorito){
-        FavoritoSalida favoritoSalida = modelMapper.map(favorito, FavoritoSalida.class);
-        //favoritoSalida.setProducto(entidadProductoAdtoSalida(favorito.getProducto()));
-        //favoritoSalida.setUsuario(entidadUsuarioAdtoSalida(favorito.getUsuario()));
-        return favoritoSalida;
+        return modelMapper.map(favorito, FavoritoSalida.class);
     }
 
     private ProductoSalidaDto entidadProductoAdtoSalida(Producto producto) {

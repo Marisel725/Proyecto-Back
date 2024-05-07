@@ -16,7 +16,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString
 public class ProductoSalidaDto {
     private Long id;
     private String nombre;
