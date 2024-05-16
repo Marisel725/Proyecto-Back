@@ -4,15 +4,13 @@ import com.ebikerrent.alquilerbicicletas.dto.entrada.imagen.ImagenEntradaDtoProd
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 @AllArgsConstructor
@@ -32,6 +30,10 @@ public class ProductoEntradaDto {
     @NotBlank(message = "La descripción debe especificarse.")
     @Size(min = 1, max = 250)
     private String descripcion;
+    @NotNull(message = "El precio del producto no puede ser nulo.")
+    @DecimalMin(value = "0.00", message = "El precio no puede ser negativo.")
+    @Digits(integer = 8, fraction = 2, message = "El precio debe tener como máximo 8 dígitos en total, con 2 dígitos fraccionarios.")
+    private BigDecimal precio;
 
     @Valid //Valida en su propia clase
     @JsonProperty("imagenes")

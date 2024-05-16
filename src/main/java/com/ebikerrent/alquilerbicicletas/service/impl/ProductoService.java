@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -48,7 +49,6 @@ public class ProductoService implements IProductoService {
         }
 
         String categoriaId = productoEntradaDto.getCategoriaString();
-        LOGGER.info("ESTÁ ENTARNDO" + productoEntradaDto.getCategoriaString());
         Categoria categoria = categoriaRepository.findByTitulo(categoriaId);
         if (categoria == null) {
             throw new ResourceNotFoundException("No se encontró la categoría con el nombre proporcionado: " + categoriaId);
@@ -56,18 +56,25 @@ public class ProductoService implements IProductoService {
 
         Set<Caracteristica> caracteristicasList = new HashSet<>();
         Set<String> arrayDeCaracteristicas = productoEntradaDto.getCaracteristica_nombre();
-        for (String caracteristica : arrayDeCaracteristicas) {
-            Caracteristica caracteristicaBuscada = caracteristicaRepository.findByNombre(caracteristica);
-            if (caracteristicaBuscada == null) {
-                LOGGER.error("No se encontró la caracteristica buscada");
-                throw new ResourceNotFoundException("No se encontró la caracteristica en la base de datos: " + caracteristica);
+        if (arrayDeCaracteristicas != null) {
+            for (String caracteristica : arrayDeCaracteristicas) {
+                Caracteristica caracteristicaBuscada = caracteristicaRepository.findByNombre(caracteristica);
+                if (caracteristicaBuscada == null) {
+                    LOGGER.error("No se encontró la caracteristica buscada");
+                    throw new ResourceNotFoundException("No se encontró la caracteristica en la base de datos: " + caracteristica);
+                }
+                caracteristicasList.add(caracteristicaBuscada);
             }
-            caracteristicasList.add(caracteristicaBuscada);
+        }else {
+            LOGGER.warn("El conjunto de características es nulo en el DTO de entrada.");
+            throw new ResourceNotFoundException("No se encontró la caracteristica en la base de datos: ");
         }
 
         Producto productRecibido = dtoEntradaAentidad(productoEntradaDto);
         productRecibido.setCategoria(categoria);
         productRecibido.setCaracteristicas(caracteristicasList);
+        BigDecimal precio = productoEntradaDto.getPrecio();
+        productRecibido.setPrecio(precio);
 
         Producto productoRegistrado = productoRepository.save((productRecibido));
         ProductoSalidaDto productoResultado = entidadAdtoSalida(productoRegistrado);

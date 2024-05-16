@@ -6,14 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a0a17352-093d-42d2-a794-d7cab6395108" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/controller/FavoritoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/controller/FavoritoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/dto/entrada/favorito/FavoritoEntradaLista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/dto/entrada/favorito/FavoritoEntradaLista.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/dto/salida/producto/ProductoSalidaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/dto/salida/producto/ProductoSalidaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/dto/salida/reserva/ReservaSalidaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/dto/salida/reserva/ReservaSalidaDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/exceptions/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/exceptions/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/repository/FavoritoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/repository/FavoritoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/service/IFavoritoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/service/IFavoritoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/service/impl/FavoritoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/service/impl/FavoritoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/dto/entrada/producto/ProductoEntradaDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/dto/entrada/producto/ProductoEntradaDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/entity/Producto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/entity/Producto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/service/impl/ProductoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/ebikerrent/alquilerbicicletas/service/impl/ProductoService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,14 +26,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "C:/Users/Marisel/DH/Proyecto con Juan Back/Proyecto-Back",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Marisel/DH/Proyecto con Juan Back/Proyecto-Back&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="AlquilerBicicletasApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.ebikerrent.alquilerbicicletas.AlquilerBicicletasApplication" />

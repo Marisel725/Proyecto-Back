@@ -3,6 +3,7 @@ package com.ebikerrent.alquilerbicicletas.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -26,6 +27,8 @@ public class Producto {
 
     @Column(name = "DESCRIPCION")
     private String descripcion;
+    @Column(name = "PRECIO")
+    private BigDecimal precio;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "producto_id")
@@ -59,6 +62,7 @@ public class Producto {
                 "ID" + id + '\n'+
                 "nombre='" + nombre + '\n' +
                 "descripcion='" + descripcion + '\n' +
+                "precio=" + precio + '\n' +
                 "Imagen Título:" + imagenes + '\n'+
                 "Categoria:" + categoria + '\n'+
                 "Caracteristicas:" + caracteristicas;
